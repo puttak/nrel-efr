@@ -1,0 +1,54 @@
+% ----------------------------------------------------------------------------
+% Setup and configuration
+% ----------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+% for serious mathematical typesetting, https://www.ctan.org/pkg/amsmath
+\usepackage{amsmath}
+
+% enhances the quality of tables, https://www.ctan.org/pkg/booktabs/
+\usepackage{booktabs}
+
+% improve captions that appear above tables
+\usepackage{caption}
+
+% use H to place figures and tables at exact location, https://www.ctan.org/pkg/float
+\usepackage{float}
+
+% improved graphics capabilities for figures, https://ctan.org/pkg/graphicx
+\usepackage{graphicx}
+
+% create hyperlinks in the document and disable border, https://ctan.org/pkg/hyperref
+\usepackage[hidelinks]{hyperref}
+
+% greek letters in text without math mode, https://www.ctan.org/pkg/textgreek
+\usepackage{textgreek}
+
+% bibliography package and references file, https://www.ctan.org/pkg/biblatex
+\usepackage{biblatex}
+\addbibresource{references.bib}
+
+% ----------------------------------------------------------------------------
+% Document
+% ----------------------------------------------------------------------------
+
+\title{NREL entrained flow reactor}
+\author{Gavin Wiggins}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\input{sections/introduction}
+\input{sections/entrained-flow-reactor}
+\input{sections/blend3-feedstock}
+\input{sections/forest-residue-feedstock}
+
+\printbibliography
+\addcontentsline{toc}{section}{References}
+
+\end{document}
