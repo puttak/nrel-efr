@@ -1,7 +1,7 @@
 import logging
 
 
-def ultimate_analysis_bases(ult_ar):
+def ult_analysis_bases(ult_ar):
     """
     Calculate dry basis and dry ash-free basis for ultimate analysis.
     """
