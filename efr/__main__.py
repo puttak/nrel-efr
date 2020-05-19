@@ -3,7 +3,7 @@ import importlib
 import logging
 
 from ultimate_analysis_bases import ultimate_analysis_bases
-from biocomp_chemical_analysis import biocomp_chemical_analysis
+from biomass_composition import biomass_composition
 
 
 def main():
@@ -22,15 +22,17 @@ def main():
 
     # Import parameters as a `params` module
     spec = importlib.util.spec_from_file_location(module_name, file_path)
-
     params = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(params)
 
     # Ultimate analysis bases
-    ultimate_analysis_bases(params.feedstock['ultimate_analysis'])
+    ult_analysis = ultimate_analysis_bases(params.feedstock['ultimate_analysis'])
 
     # Biomass composition
-    biocomp_chemical_analysis(params.feedstock['chemical_analysis'])
+    biomass_composition(params.feedstock, ult_analysis)
+
+    # Batch reactor yields from biomass composition
+    # TODO
 
 
 if __name__ == '__main__':

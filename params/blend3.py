@@ -36,10 +36,6 @@ feedstock = {
         'gamma': 0.6,
         'delta': 0.78,
         'epsilon': 0.88
-    },
-
-    'biomass_composition': {
-        'cellulose': 99
     }
 }
 

@@ -21,9 +21,9 @@ def ultimate_analysis_bases(ult_ar):
     ult_dafcho = [100 * x / (sum_daf - ult_daf[3] - ult_daf[4]) for x in ult_daf[:-2]]
     sum_dafcho = sum(ult_dafcho)
 
-    # log results
+    # log results to console
     results = (
-        f'{" Ultimate analysis ":-^60}\n\n'
+        f'{" Ultimate analysis ":-^80}\n\n'
         f'             % ar    % dry    % daf    % daf\n'
         f'C        {ult_ar[0]:8} {ult_dry[0]:8.2f} {ult_daf[0]:8.2f} {ult_dafcho[0]:8.2f}\n'
         f'H        {ult_ar[1]:8} {ult_dry[1]:8.2f} {ult_daf[1]:8.2f} {ult_dafcho[1]:8.2f}\n'
@@ -36,3 +36,13 @@ def ultimate_analysis_bases(ult_ar):
     )
 
     logging.info(results)
+
+    # return results
+    ult_bases = {
+        'ar': ult_ar,
+        'dry': ult_dry,
+        'daf': ult_daf,
+        'dafcho': ult_dafcho
+    }
+
+    return ult_bases

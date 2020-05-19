@@ -10,6 +10,8 @@ This repository is for the Entrained Flow Reactor (EFR) at NREL. The reactor ope
 
 **efr** - Python files for running various models of the entrained flow reactor.
 
+**params** - Parameter files for running the EFR model.
+
 **tex** - LaTeX files for generating the report.
 
 ## Report
