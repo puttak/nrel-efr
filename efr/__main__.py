@@ -6,6 +6,7 @@ from ult_analysis_bases import ult_analysis_bases
 from bc_chem_analysis import bc_chem_analysis
 from bc_charact_params import bc_charact_params
 from bc_ult_analysis import bc_ult_analysis
+from batch_reactor import batch_reactor
 
 
 def _command_line_args():
@@ -64,8 +65,8 @@ def main():
     elif args.biocomp == 'ult':
         bc = bc_ult_analysis(ult_analysis)
 
-    # Batch reactor yields from biomass composition
-    # TODO
+    # Batch reactor yields for given biomass composition
+    batch_reactor(params.reactor, bc)
 
 
 if __name__ == '__main__':
