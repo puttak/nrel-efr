@@ -1,5 +1,6 @@
 import chemics as cm
 import logging
+import matplotlib.pyplot as plt
 
 
 def bc_charact_params(feedstock):
@@ -64,5 +65,9 @@ def bc_charact_params(feedstock):
         'tannins': bc["y_daf"][5],
         'triglycerides': bc["y_daf"][6]
     }
+
+    # plot biomass characterization
+    fig, ax = plt.subplots(tight_layout=True)
+    cm.plot_biocomp(ax, yc, yh, bc['y_rm1'], bc['y_rm2'], bc['y_rm3'])
 
     return bc_charact

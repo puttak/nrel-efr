@@ -7,6 +7,7 @@ from bc_chem_analysis import bc_chem_analysis
 from bc_charact_params import bc_charact_params
 from bc_ult_analysis import bc_ult_analysis
 from batch_reactor import batch_reactor
+from show_all_plots import show_all_plots
 
 
 def _command_line_args():
@@ -16,7 +17,7 @@ def _command_line_args():
 
     parser = argparse.ArgumentParser(
         description='🚀 Model the Entrained Flow Reactor (EFR)',
-        epilog='Enjoy the program 🤓')
+        epilog='🤓 Enjoy the program.')
 
     parser.add_argument(
         'params_path',
@@ -28,8 +29,12 @@ def _command_line_args():
         default='chem',
         help='biomass composition method (default: chem)')
 
-    args = parser.parse_args()
+    parser.add_argument(
+        '-s', '--show_plots',
+        action='store_true',
+        help='show plot figures (default: False)')
 
+    args = parser.parse_args()
     return args
 
 
@@ -67,6 +72,9 @@ def main():
 
     # Batch reactor yields for given biomass composition
     batch_reactor(params.reactor, bc)
+
+    # Show all plot figures
+    show_all_plots(args.show_plots)
 
 
 if __name__ == '__main__':

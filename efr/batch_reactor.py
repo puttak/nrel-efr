@@ -108,7 +108,7 @@ def batch_reactor(reactor, bc):
     ax.plot(states.t, states('LIGO').Y[:, 0], label='LIGO')
     ax.plot(states.t, states('TANN').Y[:, 0], label='TANN')
     ax.plot(states.t, states('TGL').Y[:, 0], label='TGL')
-    ax.plot(states.t, states('CHAR').Y[:, 0], label='CHAR')
+    # ax.plot(states.t, states('CHAR').Y[:, 0], label='CHAR')
     config(ax, xlabel='Time [s]', ylabel='Mass fraction [-]')
 
     fig, ax = plt.subplots(tight_layout=True)
@@ -142,4 +142,10 @@ def batch_reactor(reactor, bc):
     ax.plot(states.t, y_solids, label='solids')
     config(ax, xlabel='Time [s]', ylabel='Mass fraction [-]')
 
-    # plt.show()
+    fig, ax = plt.subplots(tight_layout=True)
+    ax.plot(states.t, states.T)
+    ax.grid(True, color='0.9')
+    ax.set_frame_on(False)
+    ax.set_xlabel('Time [s]')
+    ax.set_ylabel('Temperature [K]')
+    ax.tick_params(color='0.9')
