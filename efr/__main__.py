@@ -1,13 +1,13 @@
 import argparse
 import importlib
 import logging
+import matplotlib.pyplot as plt
 
 from ult_analysis_bases import ult_analysis_bases
 from bc_chem_analysis import bc_chem_analysis
 from bc_charact_params import bc_charact_params
 from bc_ult_analysis import bc_ult_analysis
 from batch_reactor import batch_reactor
-from show_all_plots import show_all_plots
 
 
 def _command_line_args():
@@ -74,7 +74,8 @@ def main():
     batch_reactor(params.reactor, bc)
 
     # Show all plot figures
-    show_all_plots(args.show_plots)
+    if args.show_plots:
+        plt.show()
 
 
 if __name__ == '__main__':
