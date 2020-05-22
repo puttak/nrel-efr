@@ -3,7 +3,7 @@ import logging
 import matplotlib.pyplot as plt
 
 
-def bc_charact_params(feedstock):
+def bc_ult_modified(feedstock):
     """
     Biomass composition based on characterization method discussed in Debiagi
     2015 paper. Uses the given values for yc, yh, alpha, beta, gamma, delta,

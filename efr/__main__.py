@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 
 from ult_analysis_bases import ult_analysis_bases
 from bc_chem_analysis import bc_chem_analysis
-from bc_charact_params import bc_charact_params
 from bc_ult_analysis import bc_ult_analysis
+from bc_ult_modified import bc_ult_modified
 from batch_reactor import batch_reactor
 
 
@@ -25,7 +25,7 @@ def _command_line_args():
 
     parser.add_argument(
         '-bc', '--biocomp',
-        choices=['chem', 'charact', 'ult'],
+        choices=['chem', 'ult', 'ultmod'],
         default='chem',
         help='biomass composition method (default: chem)')
 
@@ -43,10 +43,8 @@ def main():
     Main function.
     """
 
-    # Configure logging
+    # Configure logging and command line arguments
     logging.basicConfig(format='%(message)s', level=logging.INFO)
-
-    # Get command line arguments
     args = _command_line_args()
 
     # Get file path and module name of parameters file
@@ -65,10 +63,10 @@ def main():
     # Biomass composition
     if args.biocomp == 'chem':
         bc = bc_chem_analysis(params.feedstock['chemical_analysis'])
-    elif args.biocomp == 'charact':
-        bc = bc_charact_params(params.feedstock)
     elif args.biocomp == 'ult':
         bc = bc_ult_analysis(ult_analysis)
+    elif args.biocomp == 'ultmod':
+        bc = bc_ult_modified(params.feedstock)
 
     # Batch reactor yields for given biomass composition
     batch_reactor(params.reactor, bc)
