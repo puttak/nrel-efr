@@ -58,13 +58,13 @@ def main():
     spec.loader.exec_module(params)
 
     # Ultimate analysis bases
-    ult_analysis = ult_analysis_bases(params.feedstock['ultimate_analysis'])
+    ult_bases = ult_analysis_bases(params.feedstock)
 
     # Biomass composition
     if args.biocomp == 'chem':
-        bc = bc_chem_analysis(params.feedstock['chemical_analysis'])
+        bc = bc_chem_analysis(params.feedstock)
     elif args.biocomp == 'ult':
-        bc = bc_ult_analysis(ult_analysis)
+        bc = bc_ult_analysis(ult_bases)
     elif args.biocomp == 'ultmod':
         bc = bc_ult_modified(params.feedstock)
 

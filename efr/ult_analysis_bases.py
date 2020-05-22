@@ -1,12 +1,23 @@
 import logging
 
 
-def ult_analysis_bases(ult_ar):
+def ult_analysis_bases(feedstock):
     """
     Calculate dry basis and dry ash-free basis for ultimate analysis.
+
+    Parameters
+    ----------
+    feedstock : dict
+        Feedstock parameters.
+
+    Returns
+    -------
+    ult_bases : dict
+        Ultimate analysis bases.
     """
 
     # as-received basis (% ar)
+    ult_ar = feedstock['ultimate_analysis']
     sum_ar = sum(ult_ar)
 
     # dry basis (% dry)

@@ -3,7 +3,7 @@ import logging
 import matplotlib.pyplot as plt
 
 
-def bc_ult_analysis(ult_analysis):
+def bc_ult_analysis(ult_bases):
     """
     Biomass composition based on characterization method discussed in Debiagi
     2015 paper. Uses only the C and H mass fractions from ultimate analysis of
@@ -11,7 +11,7 @@ def bc_ult_analysis(ult_analysis):
 
     Parameters
     ----------
-    ult_analysis : dict
+    ult_bases : dict
         Ultimate analysis bases.
 
     Returns
@@ -20,8 +20,8 @@ def bc_ult_analysis(ult_analysis):
         Biomass composition.
     """
 
-    yc = ult_analysis['dafcho'][0] / 100
-    yh = ult_analysis['dafcho'][1] / 100
+    yc = ult_bases['dafcho'][0] / 100
+    yh = ult_bases['dafcho'][1] / 100
 
     bc = cm.biocomp(yc, yh)
 

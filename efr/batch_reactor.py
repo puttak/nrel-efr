@@ -145,7 +145,7 @@ def batch_reactor(reactor, bc):
     cti_file = 'efr/debiagi_sw.cti'
 
     # get reactor parameters
-    tmax = reactor['time_max']
+    tmax = reactor['time_duration']
     temp = reactor['temperature']
     press = reactor['pressure']
 
@@ -211,9 +211,9 @@ def batch_reactor(reactor, bc):
     # log results to console
     results = (
         f'{" Batch reactor yields ":-^80}\n\n'
-        f'pressure    = {press} Pa\n'
-        f'temperature = {temp} K\n'
-        f'time max    = {tmax} s\n\n'
+        f'pressure      = {press} Pa\n'
+        f'temperature   = {temp} K\n'
+        f'time duration = {tmax} s\n\n'
         f'              % mass\n'
         f'gases         {y_gases[-1] * 100:.2f}\n'
         f'liquids       {y_liquids[-1] * 100:.2f}\n'
