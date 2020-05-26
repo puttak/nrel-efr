@@ -8,6 +8,7 @@ from bc_chem_analysis import bc_chem_analysis
 from bc_ult_analysis import bc_ult_analysis
 from bc_ult_modified import bc_ult_modified
 from batch_reactor import batch_reactor
+from debiagi_sensitivity import debiagi_sa
 
 
 def _command_line_args():
@@ -33,6 +34,11 @@ def _command_line_args():
         '-s', '--show_plots',
         action='store_true',
         help='show plot figures (default: False)')
+
+    parser.add_argument(
+        '-sa', '--sensitivity-analysis',
+        action='store_true',
+        help='sensitivity analysis of the kinetics (default: False)')
 
     args = parser.parse_args()
     return args
@@ -70,6 +76,10 @@ def main():
 
     # Batch reactor yields for given biomass composition
     batch_reactor(params.reactor, bc)
+
+    # Sensitivity analysis of Debiagi 2018 pyrolysis kinetics
+    if args.sensitivity_analysis:
+        debiagi_sa(params.reactor)
 
     # Show all plot figures
     if args.show_plots:

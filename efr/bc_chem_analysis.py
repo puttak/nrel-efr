@@ -39,7 +39,7 @@ def bc_chem_analysis(feedstock):
         f'lignin-o          {ligo_daf:8.2f}\n'
         f'tannins           {tann_daf:8.2f}\n'
         f'triglycerides     {tgl_daf:8.2f}\n'
-        f'sum               {sum_daf:8.2f}'
+        f'sum               {sum_daf:8.2f}\n'
     )
 
     logging.info(results)
