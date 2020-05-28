@@ -75,7 +75,7 @@ def _run_batch_reactor(y, reactor):
     return y_gases[-1], y_liquids[-1], y_solids[-1]
 
 
-def debiagi_sa(reactor):
+def debiagi_sa(reactor, sens_analysis):
     """
     Perform a sensitivity analysis of the Debiagi 2018 pyrolysis kinetics
     using the Sobol method.
@@ -84,6 +84,8 @@ def debiagi_sa(reactor):
     ----------
     reactor : dict
         Reactor parameters.
+    sens_analysis : dict
+        Sensitivity analysis parameters.
 
     Notes
     -----
@@ -93,19 +95,13 @@ def debiagi_sa(reactor):
     """
 
     # number of samples to generate for sensitivity analysis
-    n = 10
+    n = sens_analysis['n_samples']
 
     # define problem for sensitivity analysis
     problem = {
-        'num_vars': 7,
-        'names': ['CELL', 'GMSW', 'LIGC', 'LIGH', 'LIGO', 'TANN', 'TGL'],
-        'bounds': [[0.01, 0.99],
-                   [0.01, 0.99],
-                   [0.01, 0.99],
-                   [0.01, 0.99],
-                   [0.01, 0.99],
-                   [0.01, 0.99],
-                   [0.01, 0.99]]
+        'num_vars': sens_analysis['num_vars'],
+        'names': sens_analysis['names'],
+        'bounds': sens_analysis['bounds']
     }
 
     # generate samples using Saltelli’s sampling scheme
@@ -119,6 +115,8 @@ def debiagi_sa(reactor):
         keys = problem['names']
         y = dict(zip(keys, p))
         y_out[i] = _run_batch_reactor(y, reactor)
+
+    # parallel options for Sobol analysis
 
     # perform Sobol analysis for gas, liquid, and solid phases
     si_gas = sobol.analyze(problem, y_out[:, 0])

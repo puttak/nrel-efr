@@ -79,7 +79,7 @@ def main():
 
     # Sensitivity analysis of Debiagi 2018 pyrolysis kinetics
     if args.sensitivity_analysis:
-        debiagi_sa(params.reactor)
+        debiagi_sa(params.reactor, params.sensitivity_analysis)
 
     # Show all plot figures
     if args.show_plots:
