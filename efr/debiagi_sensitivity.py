@@ -7,13 +7,30 @@ from SALib.sample import saltelli
 from SALib.analyze import sobol
 
 
-def _run_batch_reactor(y, tmax):
+def _run_batch_reactor(y, reactor):
     """
-    here
+    Run batch reactor for sensitivity analysis.
+
+    Parameters
+    ----------
+    y : dict
+        Initial biomass composition for CELL, GMSW, LIGC, LIGH, LIGO, TANN,
+        and TGL.
+    reactor : dict
+        Reactor parameters.
+
+    Returns
+    -------
+    tuple
+        Final mass fraction of y_gases, y_liquids, and y_solids for a given
+        time duration.
     """
 
     # disable warnings about polynomial mid-point discontinuity in thermo data
     ct.suppress_thermo_warnings()
+
+    # get reactor parameters
+    tmax = reactor['time_duration']
 
     # time vector to evaluate reaction rates [s]
     time = np.linspace(0, tmax, 100)
@@ -60,13 +77,25 @@ def _run_batch_reactor(y, tmax):
 
 def debiagi_sa(reactor):
     """
-    Sensitivity analysis of Debiagi 2018 pyrolysis kinetics.
+    Perform a sensitivity analysis of the Debiagi 2018 pyrolysis kinetics
+    using the Sobol method.
 
     Parameters
     ----------
     reactor : dict
         Reactor parameters.
+
+    Notes
+    -----
+    S1 is the first-order sensitivity indices. S1_conf is the first-order
+    confidence (can be interpreted as error). ST is the total-order indices
+    while ST_conf is total-order confidence.
     """
+
+    # number of samples to generate for sensitivity analysis
+    n = 10
+
+    # define problem for sensitivity analysis
     problem = {
         'num_vars': 7,
         'names': ['CELL', 'GMSW', 'LIGC', 'LIGH', 'LIGO', 'TANN', 'TGL'],
@@ -79,29 +108,24 @@ def debiagi_sa(reactor):
                    [0.01, 0.99]]
     }
 
-    # number of samples to generate for sensitivity analysis
-    n = 10
-
-    # get reactor parameters
-    tmax = reactor['time_duration']
-
-    # generate samples from model inputs defined in `problem`
+    # generate samples using Saltelli’s sampling scheme
     param_values = saltelli.sample(problem, n)
 
-    # store outputs
+    # store outputs from batch reactor where each row of
+    # y_out is [y_gases, y_liquids, y_solids]
     y_out = np.zeros([param_values.shape[0], 3])
 
     for i, p in enumerate(param_values):
         keys = problem['names']
         y = dict(zip(keys, p))
-        y_out[i] = _run_batch_reactor(y, tmax)
+        y_out[i] = _run_batch_reactor(y, reactor)
 
-    # perform sobol analysis for gas, liquid, and solid phase
+    # perform Sobol analysis for gas, liquid, and solid phases
     si_gas = sobol.analyze(problem, y_out[:, 0])
     si_liquid = sobol.analyze(problem, y_out[:, 1])
     si_solid = sobol.analyze(problem, y_out[:, 2])
 
-    # log results to console
+    # log sensitivity analysis parameters to console
     results1 = (
         f'{" Sensitivity analysis of Debiagi 2018 kinetics ":-^80}\n\n'
         f'n         = {n}\n'
@@ -110,8 +134,9 @@ def debiagi_sa(reactor):
     )
     logging.info(results1)
 
+    # log results for gases to console
     results2 = (
-        f'{" Sobol analysis (gases) ":-^80}\n\n'
+        f'Sobol analysis for gases\n\n'
         f'{"Parameter":10} {"S1":>10} {"S1_conf":>10} {"ST":>10} {"ST_conf":>10}'
     )
     logging.info(results2)
@@ -123,8 +148,9 @@ def debiagi_sa(reactor):
         stconf = si_gas['ST_conf'][i]
         logging.info(f'{name:10} {s1:10.4f} {s1conf:10.4f} {st:10.4f} {stconf:10.4f}')
 
+    # log results for liquids to console
     results3 = (
-        f'\n{" Sobol analysis (liquids) ":-^80}\n\n'
+        f'\nSobol analysis for liquids\n\n'
         f'{"Parameter":10} {"S1":>10} {"S1_conf":>10} {"ST":>10} {"ST_conf":>10}'
     )
     logging.info(results3)
@@ -136,8 +162,9 @@ def debiagi_sa(reactor):
         stconf = si_liquid['ST_conf'][i]
         logging.info(f'{name:10} {s1:10.4f} {s1conf:10.4f} {st:10.4f} {stconf:10.4f}')
 
+    # log results for solids to console
     results4 = (
-        f'\n{" Sobol analysis (solids) ":-^80}\n\n'
+        f'\nSobol analysis for solids\n\n'
         f'{"Parameter":10} {"S1":>10} {"S1_conf":>10} {"ST":>10} {"ST_conf":>10}'
     )
     logging.info(results4)
@@ -155,54 +182,54 @@ def debiagi_sa(reactor):
     # cellulose
     axs[0, 0].scatter(param_values[:, 0], y_out[:, 0], s=20, alpha=0.5, color='C0', edgecolors='none')
     axs[0, 0].set_xlabel('CELL')
-    axs[0, 0].set_ylabel('Gas')
+    axs[0, 0].set_ylabel('Gases')
 
     axs[1, 0].scatter(param_values[:, 0], y_out[:, 1], s=20, alpha=0.5, color='C0', edgecolors='none')
     axs[1, 0].set_xlabel('CELL')
-    axs[1, 0].set_ylabel('Liquid')
+    axs[1, 0].set_ylabel('Liquids')
 
     axs[2, 0].scatter(param_values[:, 0], y_out[:, 2], s=20, alpha=0.5, color='C0', edgecolors='none')
     axs[2, 0].set_xlabel('CELL')
-    axs[2, 0].set_ylabel('Solid')
+    axs[2, 0].set_ylabel('Solids')
 
     # hemicellulose
     axs[0, 1].scatter(param_values[:, 1], y_out[:, 0], s=20, alpha=0.5, color='C1', edgecolors='none')
     axs[0, 1].set_xlabel('GMSW')
-    axs[0, 1].set_ylabel('Gas')
+    axs[0, 1].set_ylabel('Gases')
 
     axs[1, 1].scatter(param_values[:, 1], y_out[:, 1], s=20, alpha=0.5, color='C1', edgecolors='none')
     axs[1, 1].set_xlabel('GMSW')
-    axs[1, 1].set_ylabel('Liquid')
+    axs[1, 1].set_ylabel('Liquids')
 
     axs[2, 1].scatter(param_values[:, 1], y_out[:, 2], s=20, alpha=0.5, color='C1', edgecolors='none')
     axs[2, 1].set_xlabel('GMSW')
-    axs[2, 1].set_ylabel('Solid')
+    axs[2, 1].set_ylabel('Solids')
 
     # lignin-c
     axs[0, 2].scatter(param_values[:, 2], y_out[:, 0], s=20, alpha=0.5, color='C2', edgecolors='none')
     axs[0, 2].set_xlabel('LIGC')
-    axs[0, 2].set_ylabel('Gas')
+    axs[0, 2].set_ylabel('Gases')
 
     axs[1, 2].scatter(param_values[:, 2], y_out[:, 1], s=20, alpha=0.5, color='C2', edgecolors='none')
     axs[1, 2].set_xlabel('LIGC')
-    axs[1, 2].set_ylabel('Liquid')
+    axs[1, 2].set_ylabel('Liquids')
 
     axs[2, 2].scatter(param_values[:, 2], y_out[:, 2], s=20, alpha=0.5, color='C2', edgecolors='none')
     axs[2, 2].set_xlabel('LIGC')
-    axs[2, 2].set_ylabel('Solid')
+    axs[2, 2].set_ylabel('Solids')
 
     # lignin-h
     axs[0, 3].scatter(param_values[:, 3], y_out[:, 0], s=20, alpha=0.5, color='C3', edgecolors='none')
     axs[0, 3].set_xlabel('LIGH')
-    axs[0, 3].set_ylabel('Gas')
+    axs[0, 3].set_ylabel('Gases')
 
     axs[1, 3].scatter(param_values[:, 3], y_out[:, 1], s=20, alpha=0.5, color='C3', edgecolors='none')
     axs[1, 3].set_xlabel('LIGH')
-    axs[1, 3].set_ylabel('Liquid')
+    axs[1, 3].set_ylabel('Liquids')
 
     axs[2, 3].scatter(param_values[:, 3], y_out[:, 2], s=20, alpha=0.5, color='C3', edgecolors='none')
     axs[2, 3].set_xlabel('LIGH')
-    axs[2, 3].set_ylabel('Solid')
+    axs[2, 3].set_ylabel('Solids')
 
     # --- Figure 2 ---
     fig, axs = plt.subplots(nrows=3, ncols=3, figsize=(10, 8), tight_layout=True)
@@ -260,15 +287,19 @@ def debiagi_sa(reactor):
 
     ax1.bar(x - width / 2, si_gas['S1'], width, label='S1')
     ax1.bar(x + width / 2, si_gas['ST'], width, label='ST')
+    ax1.errorbar(x - width / 2, si_gas['S1'], yerr=si_gas['S1_conf'], fmt='k.')
+    ax1.errorbar(x + width / 2, si_gas['ST'], yerr=si_gas['ST_conf'], fmt='k.')
     ax1.set_ylabel('Sensitivity')
-    ax1.set_title('Gas')
+    ax1.set_title('Gases')
     ax1.set_xticks(x)
     ax1.set_xticklabels(problem['names'])
     bar_style(ax1)
 
     ax2.bar(x - width / 2, si_liquid['S1'], width, label='S1')
     ax2.bar(x + width / 2, si_liquid['ST'], width, label='ST')
-    ax2.set_title('Liquid')
+    ax2.errorbar(x - width / 2, si_liquid['S1'], yerr=si_liquid['S1_conf'], fmt='k.')
+    ax2.errorbar(x + width / 2, si_liquid['ST'], yerr=si_liquid['ST_conf'], fmt='k.')
+    ax2.set_title('Liquids')
     ax2.set_xlabel('Parameter')
     ax2.set_xticks(x)
     ax2.set_xticklabels(problem['names'])
@@ -276,8 +307,10 @@ def debiagi_sa(reactor):
 
     ax3.bar(x - width / 2, si_solid['S1'], width, label='S1')
     ax3.bar(x + width / 2, si_solid['ST'], width, label='ST')
+    ax3.errorbar(x - width / 2, si_solid['S1'], yerr=si_solid['S1_conf'], fmt='k.')
+    ax3.errorbar(x + width / 2, si_solid['ST'], yerr=si_solid['ST_conf'], fmt='k.')
     ax3.legend(loc='best')
-    ax3.set_title('Solid')
+    ax3.set_title('Solids')
     ax3.set_xticks(x)
     ax3.set_xticklabels(problem['names'])
     bar_style(ax3)

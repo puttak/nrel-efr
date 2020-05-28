@@ -31,7 +31,7 @@ def _command_line_args():
         help='biomass composition method (default: chem)')
 
     parser.add_argument(
-        '-s', '--show_plots',
+        '-sp', '--show_plots',
         action='store_true',
         help='show plot figures (default: False)')
 
@@ -46,7 +46,7 @@ def _command_line_args():
 
 def main():
     """
-    Main function.
+    Main function to run the program.
     """
 
     # Configure logging and command line arguments

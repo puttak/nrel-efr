@@ -41,3 +41,18 @@ reactor = {
     'temperature': 773.15,
     'time_duration': 10.0
 }
+
+# Sensitivity analysis for the Debiagi 2018 kinetics
+
+sensitivity_analysis = {
+    'n': 10,
+    'num_vars': 7,
+    'names': ['CELL', 'GMSW', 'LIGC', 'LIGH', 'LIGO', 'TANN', 'TGL'],
+    'bounds': [[0.01, 0.99],
+               [0.01, 0.99],
+               [0.01, 0.99],
+               [0.01, 0.99],
+               [0.01, 0.99],
+               [0.01, 0.99],
+               [0.01, 0.99]]
+}
