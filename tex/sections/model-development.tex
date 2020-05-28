@@ -1,0 +1,99 @@
+% !TEX root = ../main.tex
+
+\section{Model development}
+
+Here.
+
+\subsection{Biomass pyrolysis kinetics}
+
+The Debiagi et al. \cite{Debiagi-2018} kinetic scheme for biomass pyrolysis is discussed in this section.
+
+\begin{table}[H]
+    \centering
+    \caption{Solid species in the Debiagi kinetic scheme.}
+    \begin{tabular}{@{}clll@{}}
+        \toprule
+        Item & Abbreviation & Name & Formula \\
+        \midrule
+        1   & CELL      & cellulose                     & C$_6$H$_{10}$O$_5$ \\
+        2   & CELLA     & activated cellulose           & C$_6$H$_{10}$O$_5$ \\
+        3   & CHAR      & char                          & C \\
+        4   & GCO       & metaplastic carbon monoxide   & CO \\
+        5   & GCO2      & metaplastic carbon dioxide    & CO$_2$ \\
+        6   & GCH4      & metaplastic methane           & CH$_4$ \\
+        7   & GC2H4     & metaplastic ethylene          & C$_2$H$_4$ \\
+        8   & GCH3OH    & metaplastic methyl alcohol    & CH$_4$O \\
+        9   & GCOH2     & metaplastic formaldehyde      & CH$_2$O \\
+        10  & GH2       & metaplastic hydrogen          & H$_2$ \\
+        11  & GMSW      & hemicellulose softwood        & C$_5$H$_8$O$_4$ \\
+        12  & HCE1      & hemicellulose                 & C$_5$H$_8$O$_4$ \\
+        13  & HCE2      & hemicellulose                 & C$_5$H$_8$O$_4$ \\
+        9   & HMWL      & heavy molecular weight lignin & C$_{24}$H$_{28}$O$_4$ \\
+        14  & LIG       & lignin                        & C$_{11}$H$_{12}$O$_4$ \\
+        15  & LIGC      & lignin carbon                 & C$_{15}$H$_{14}$O$_4$ \\
+        16  & LIGCC     & lignin carbon                 & C$_{15}$H$_{14}$O$_4$ \\
+        17  & LIGH      & lignin hydrogen               & C$_{22}$H$_{28}$O$_9$ \\
+        18  & LIGO      & lignin oxygen                 & C$_{20}$H$_{22}$O$_{10}$ \\
+        19  & LIGOH     & lignin hydroxide              & C$_{19}$H$_{22}$O$_8$ \\
+        20  & XYHW      & hemicellulose hardwood        & C$_5$H$_8$O$_4$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Gas species in the Debiagi kinetic scheme.}
+    \begin{tabular}{@{}clll@{}}
+        \toprule
+        Item & Abbreviation & Name & Formula \\
+        \midrule
+        1   & ACAC      & acetic acid               & C$_2$H$_4$O$_2$ \\
+        2   & ALD3      & propanal                  & C$_3$H$_6$O \\
+        3   & ANISOLE   & anisole                   & C$_7$H$_8$O \\
+        4   & C2H4      & ethylene                  & C$_2$H$_4$ \\
+        5   & C2H6      & ethane                    & C$_2$H$_6$ \\
+        6   & C2H5OH    & ethanol                   & C$_2$H$_6$O \\
+        7   & C2H3CHO   & 2-propenal                & C$_3$H$_4$O \\
+        8   & C3H6O2    & propanal, 3-hydroxy-      & C$_3$H$_6$O$_2$ \\
+        9   & CH2O      & formaldehyde              & CH$_2$O \\
+        10  & CH3OH     & methyl alcohol            & CH$_4$O \\
+        11  & CH3CHO    & acetaldehyde              & C$_2$H$_4$O \\
+        12  & CH4       & methane                   & CH$_4$ \\
+        13  & CO        & carbon monoxide           & CO \\
+        14  & CO2       & carbon dioxide            & CO$_2$ \\
+        15  & COUMARYL  & coumaryl alcohol          & C$_9$H$_{10}$O$_2$ \\
+        16  & FE2MACR   & sinapaldehyde             & C$_{11}$H$_{12}$O$_4$ \\
+        17  & FURF      & furfural                  & C$_5$H$_4$O$_2$   \\
+        18  & GLYOX     & glyoxal                   & C$_2$H$_2$O$_2$ \\
+        19  & H2        & hydrogen                  & H$_2$ \\
+        20  & H2O       & water                     & H$_2$O \\
+        21  & HAA       & hydroxy-acetaldehyde      & C$_2$H$_4$O$_2$ \\
+        22  & HCOOH     & formic acid               & CH$_2$O$_2$ \\
+        23  & HMFU      & 5-hydroxymethyl-furfural  & C$_6$H$_6$O$_3$ \\
+        24  & LVG       & levoglucosan              & C$_6$H$_{10}$O$_5$ \\
+        25  & PHENOL    & phenol                    & C$_6$H$_6$O \\
+        26  & XYLAN     & xylosan                   & C$_5$H$_8$O$_4$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Biomass characterization}
+
+Here.
+
+\begin{table}[H]
+    \centering
+    \caption{Blend3 biomass composition mass percent, dry basis. Values are calculated from Table \ref{tab:chem-analysis}.}
+    \begin{tabular}{lr}
+        \toprule
+        Biomass composition & \% dry \\
+        \midrule
+        cellulose     & 38.95 \\
+        hemicellulose & 24.56 \\
+        lignin        & 29.48 \\
+        tann          & 2.90  \\
+        tgl           & 3.49  \\
+        ash           & 0.63  \\
+        \bottomrule
+    \end{tabular}
+\end{table}
