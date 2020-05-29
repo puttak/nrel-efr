@@ -6,76 +6,76 @@ Here.
 
 \subsection{Biomass pyrolysis kinetics}
 
-The Debiagi et al. \cite{Debiagi-2018} kinetic scheme for biomass pyrolysis is discussed in this section.
+Chemical species in the Debiagi et al. kinetic scheme for biomass pyrolysis \cite{Debiagi-2018}.
 
-\begin{table}[H]
-    \centering
-    \caption{Solid species in the Debiagi kinetic scheme.}
-    \begin{tabular}{@{}clll@{}}
+\begin{center}
+    \footnotesize
+    \begin{longtable}{lllll}
+        \caption{Chemical species in the Debiagi kinetics scheme for biomass pyrolysis.}
+        \label{tab:chem-species} \\
         \toprule
-        Item & Abbreviation & Name & Formula \\
+        Item & Name & Formula & Phase & Description \\
         \midrule
-        1   & CELL      & cellulose                     & C$_6$H$_{10}$O$_5$ \\
-        2   & CELLA     & activated cellulose           & C$_6$H$_{10}$O$_5$ \\
-        3   & CHAR      & char                          & C \\
-        4   & GCO       & metaplastic carbon monoxide   & CO \\
-        5   & GCO2      & metaplastic carbon dioxide    & CO$_2$ \\
-        6   & GCH4      & metaplastic methane           & CH$_4$ \\
-        7   & GC2H4     & metaplastic ethylene          & C$_2$H$_4$ \\
-        8   & GCH3OH    & metaplastic methyl alcohol    & CH$_4$O \\
-        9   & GCOH2     & metaplastic formaldehyde      & CH$_2$O \\
-        10  & GH2       & metaplastic hydrogen          & H$_2$ \\
-        11  & GMSW      & hemicellulose softwood        & C$_5$H$_8$O$_4$ \\
-        12  & HCE1      & hemicellulose                 & C$_5$H$_8$O$_4$ \\
-        13  & HCE2      & hemicellulose                 & C$_5$H$_8$O$_4$ \\
-        9   & HMWL      & heavy molecular weight lignin & C$_{24}$H$_{28}$O$_4$ \\
-        14  & LIG       & lignin                        & C$_{11}$H$_{12}$O$_4$ \\
-        15  & LIGC      & lignin carbon                 & C$_{15}$H$_{14}$O$_4$ \\
-        16  & LIGCC     & lignin carbon                 & C$_{15}$H$_{14}$O$_4$ \\
-        17  & LIGH      & lignin hydrogen               & C$_{22}$H$_{28}$O$_9$ \\
-        18  & LIGO      & lignin oxygen                 & C$_{20}$H$_{22}$O$_{10}$ \\
-        19  & LIGOH     & lignin hydroxide              & C$_{19}$H$_{22}$O$_8$ \\
-        20  & XYHW      & hemicellulose hardwood        & C$_5$H$_8$O$_4$ \\
+        1  & CELL           & C$_6$H$_{10}$O$_5$      & solid       & cellulose \\
+        2  & CELLA          & C$_6$H$_{10}$O$_5$      & solid       & active cellulose \\
+        3  & GMSW           & C$_5$H$_{8}$O$_4$       & solid       & hemicellulose softwood \\
+        4  & XYHW           & C$_5$H$_{8}$O$_4$       & solid       & hemicellulose hardwood \\
+        5  & XYGR           & C$_5$H$_{8}$O$_4$       & solid       & hemicellulose grass \\
+        6  & HCE1           & C$_5$H$_{8}$O$_4$       & solid       & intermediate hemicellulose \\
+        7  & HCE2           & C$_5$H$_{8}$O$_4$       & solid       & intermediate hemicellulose \\
+        8  & ITANN          & C$_8$H$_{4}$O$_4$       & solid       & intermediate phenolics \\
+        9  & LIG            & C$_{11}$H$_{12}$O$_4$   & solid       & intermediate lignin \\
+        10 & LIGC           & C$_{15}$H$_{14}$O$_4$   & solid       & carbon rich lignin \\
+        11 & LIGCC          & C$_{15}$H$_{14}$O$_4$   & solid       & intermediate lignin \\
+        12 & LIGH           & C$_{22}$H$_{28}$O$_9$   & solid       & hydrogen rich lignin \\
+        13 & LIGO           & C$_{20}$H$_{22}$O$_10$  & solid       & oxygen rich lignin \\
+        14 & LIGOH          & C$_{19}$H$_{22}$O$_8$   & solid       & intermediate lignin \\
+        15 & TANN           & C$_{15}$H$_{12}$O$_7$   & solid       & tannins \\
+        16 & TGL            & C$_{57}$H$_{100}$O$_7$  & solid       & triglycerides \\
+        17 & CHAR           & C                       & solid       & char as pure carbon \\
+        18 & G\{COH2\} loose& CH$_2$O                 & metaplastic & loose formaldehyde \\
+        19 & G\{CO2\}       & CO$_2$                  & metaplastic & trapped carbon dioxide \\
+        20 & G\{CO\}        & CO                      & metaplastic & trapped carbon monoxide \\
+        21 & G\{CH3OH\}     & CH$_4$O                 & metaplastic & trapped methanol \\
+        22 & G\{CH4\}       & CH$_4$                  & metaplastic & trapped methane \\
+        23 & G\{C2H4\}      & C$_2$H$_4$              & metaplastic & trapped ethylene \\
+        24 & G\{C6H5OH\}    & C$_6$H$_6$O             & metaplastic & trapped phenol \\
+        25 & G\{COH2\} stiff& CH$_2$O                 & metaplastic & stiff formaldehyde \\
+        26 & G\{H2\}        & H$_2$                   & metaplastic & trapped hydrogen \\
+        27 & G\{C2H6\}      & C$_2$H$_6$              & metaplastic & trapped ethane \\
+        28 & C2H4           & C$_2$H$_4$              & gas         & ethylene \\
+        29 & C2H6           & C$_2$H$_6$              & gas         & ethane \\
+        30 & CH2O           & CH$_2$O                 & gas         & formaldehyde \\
+        31 & CH4            & CH$_4$                  & gas         & methane \\
+        32 & CO             & CO                      & gas         & carbon monoxide \\
+        33 & CO2            & CO$_2$                  & gas         & carbon dioxide \\
+        34 & H2             & H$_2$                   & gas         & hydrogen \\
+        35 & C2H3CHO        & C$_3$H$_4$O             & liquid      & acrolein \\
+        36 & C2H5CHO        & C$_3$H$_6$O             & liquid      & propionaldehyde \\
+        37 & C2H5OH         & C$_2$H$_6$O             & liquid      & ethanol \\
+        38 & C5H8O4         & C$_5$H$_8$O$_4$         & liquid      & xylofuranose \\
+        39 & C6H10O5        & C$_6$H$_{10}$O$_5$      & liquid      & levoglucosan \\
+        40 & C6H5OCH3       & C$_7$H$_8$O             & liquid      & anisole \\
+        41 & C6H5OH         & C$_6$H$_6$O             & liquid      & phenol \\
+        42 & C6H6O3         & C$_6$H$_6$O$_3$         & liquid      & 5-(hydroxymethyl)-furfural \\
+        43 & C24H28O4       & C$_{24}$H$_{28}$O$_4$   & liquid      & heavy molecular weight lignin \\
+        44 & CH2OHCH2CHO    & C$_3$H$_6$O$_2$         & liquid      & propionic acid \\
+        45 & CH2OHCHO       & C$_2$H$_4$O$_2$         & liquid      & acetic acid \\
+        46 & CH3CHO         & C$_2$H$_4$O             & liquid      & acetaldehyde \\
+        47 & CH3CO2H        & C$_2$H$_4$O$_2$         & liquid      & acetic acid \\
+        48 & CH3OH          & CH$_4$O                 & liquid      & methanol \\
+        49 & CHOCHO         & C$_2$H$_2$O$_2$         & liquid      & glyoxal \\
+        50 & CRESOL         & C$_7$H$_8$O             & liquid      & cresol \\
+        51 & FURFURAL       & C$_5$H$_4$O$_2$         & liquid      & furan-2-carboxaldehyde(furfural) \\
+        52 & H2O            & H$_2$O                  & liquid      & water from reactions \\
+        53 & HCOOH          & CH$_2$O$_2$             & liquid      & formic acid \\
+        54 & MLINO          & C$_{19}$H$_{34}$O$_2$   & liquid      & methyl linoleate \\
+        55 & U2ME12         & C$_{13}$H$_{22}$O$_2$   & liquid      & linalyl propionate \\
+        56 & VANILLIN       & C$_8$H$_8$O$_3$         & liquid      & vanillin \\
+        57 & ACQUA          & H$_2$O                  & liquid      & water within biomass \\
         \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Gas species in the Debiagi kinetic scheme.}
-    \begin{tabular}{@{}clll@{}}
-        \toprule
-        Item & Abbreviation & Name & Formula \\
-        \midrule
-        1   & ACAC      & acetic acid               & C$_2$H$_4$O$_2$ \\
-        2   & ALD3      & propanal                  & C$_3$H$_6$O \\
-        3   & ANISOLE   & anisole                   & C$_7$H$_8$O \\
-        4   & C2H4      & ethylene                  & C$_2$H$_4$ \\
-        5   & C2H6      & ethane                    & C$_2$H$_6$ \\
-        6   & C2H5OH    & ethanol                   & C$_2$H$_6$O \\
-        7   & C2H3CHO   & 2-propenal                & C$_3$H$_4$O \\
-        8   & C3H6O2    & propanal, 3-hydroxy-      & C$_3$H$_6$O$_2$ \\
-        9   & CH2O      & formaldehyde              & CH$_2$O \\
-        10  & CH3OH     & methyl alcohol            & CH$_4$O \\
-        11  & CH3CHO    & acetaldehyde              & C$_2$H$_4$O \\
-        12  & CH4       & methane                   & CH$_4$ \\
-        13  & CO        & carbon monoxide           & CO \\
-        14  & CO2       & carbon dioxide            & CO$_2$ \\
-        15  & COUMARYL  & coumaryl alcohol          & C$_9$H$_{10}$O$_2$ \\
-        16  & FE2MACR   & sinapaldehyde             & C$_{11}$H$_{12}$O$_4$ \\
-        17  & FURF      & furfural                  & C$_5$H$_4$O$_2$   \\
-        18  & GLYOX     & glyoxal                   & C$_2$H$_2$O$_2$ \\
-        19  & H2        & hydrogen                  & H$_2$ \\
-        20  & H2O       & water                     & H$_2$O \\
-        21  & HAA       & hydroxy-acetaldehyde      & C$_2$H$_4$O$_2$ \\
-        22  & HCOOH     & formic acid               & CH$_2$O$_2$ \\
-        23  & HMFU      & 5-hydroxymethyl-furfural  & C$_6$H$_6$O$_3$ \\
-        24  & LVG       & levoglucosan              & C$_6$H$_{10}$O$_5$ \\
-        25  & PHENOL    & phenol                    & C$_6$H$_6$O \\
-        26  & XYLAN     & xylosan                   & C$_5$H$_8$O$_4$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+    \end{longtable}
+\end{center}
 
 \subsection{Biomass characterization}
 
