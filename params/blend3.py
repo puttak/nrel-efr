@@ -39,7 +39,8 @@ reactor = {
     'name': 'Entrained flow reactor (EFR)',
     'pressure': 101_325.0,
     'temperature': 773.15,
-    'time_duration': 10.0
+    'time_duration': 10.0,
+    'energy': 'off'
 }
 
 # Sensitivity analysis for the Debiagi 2018 kinetics

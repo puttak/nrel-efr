@@ -2,6 +2,7 @@ import argparse
 import importlib
 import logging
 import matplotlib.pyplot as plt
+import timeit
 
 from ult_analysis_bases import ult_analysis_bases
 from bc_chem_analysis import bc_chem_analysis
@@ -49,6 +50,9 @@ def main():
     Main function to run the program.
     """
 
+    # Start time for program
+    ti = timeit.default_timer()
+
     # Configure logging and command line arguments
     logging.basicConfig(format='%(message)s', level=logging.INFO)
     args = _command_line_args()
@@ -80,6 +84,15 @@ def main():
     # Sensitivity analysis of Debiagi 2018 pyrolysis kinetics
     if args.sensitivity_analysis:
         debiagi_sa(params.reactor, params.sensitivity_analysis)
+
+    # Elapsed time for the program
+    tf = timeit.default_timer()
+    dt = tf - ti
+    minutes, seconds = divmod(dt, 60)
+    logging.info(
+        f'\n{" Done ":-^80}\n\n'
+        f'elapsed time = {dt:.2f} seconds (≈ {minutes} min {seconds:.0f} sec)'
+    )
 
     # Show all plot figures
     if args.show_plots:

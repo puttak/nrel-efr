@@ -32,14 +32,23 @@ def _run_batch_reactor(y, reactor):
     # get reactor parameters
     tmax = reactor['time_duration']
 
+    # get reactor parameters
+    tmax = reactor['time_duration']
+    temp = reactor['temperature']
+    press = reactor['pressure']
+    energy = reactor['energy']
+
+    # get CTI file for Debiagi 2018 kinetics for softwood
+    cti_file = 'efr/debiagi_sw.cti'
+
     # time vector to evaluate reaction rates [s]
     time = np.linspace(0, tmax, 100)
 
-    gas = ct.Solution('efr/debiagi_sw.cti')
+    gas = ct.Solution(cti_file)
 
-    gas.TPY = 773.15, 101325.0, y
+    gas.TPY = temp, press, y
 
-    r = ct.IdealGasReactor(gas, energy='off')
+    r = ct.IdealGasReactor(gas, energy=energy)
 
     sim = ct.ReactorNet([r])
     states = ct.SolutionArray(gas, extra=['t'])

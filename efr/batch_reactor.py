@@ -141,13 +141,14 @@ def batch_reactor(reactor, bc):
         Biomass composition.
     """
 
-    # CTI file for softwood Debiagi 2015 kinetics
-    cti_file = 'efr/debiagi_sw.cti'
-
     # get reactor parameters
     tmax = reactor['time_duration']
     temp = reactor['temperature']
     press = reactor['pressure']
+    energy = reactor['energy']
+
+    # get CTI file for Debiagi 2018 kinetics for softwood
+    cti_file = 'efr/debiagi_sw.cti'
 
     # biomass composition as mass fraction inputs to batch reactor
     y_fracs = {
@@ -170,7 +171,7 @@ def batch_reactor(reactor, bc):
     gas = ct.Solution(cti_file)
 
     gas.TPY = temp, press, y_fracs
-    r = ct.IdealGasReactor(gas, energy='off')
+    r = ct.IdealGasReactor(gas, energy=energy)
 
     sim = ct.ReactorNet([r])
     states = ct.SolutionArray(gas, extra=['t'])
@@ -210,10 +211,11 @@ def batch_reactor(reactor, bc):
 
     # log results to console
     results = (
-        f'{" Batch reactor yields ":-^80}\n\n'
-        f'pressure      = {press} Pa\n'
-        f'temperature   = {temp} K\n'
-        f'time duration = {tmax} s\n\n'
+        f'{" Batch reactor ":-^80}\n\n'
+        f'pressure      = {press:,} Pa\n'
+        f'temperature   = {temp} K ({temp - 273.15}°C)\n'
+        f'time duration = {tmax} s\n'
+        f'energy        = {energy}\n\n'
         f'              % mass\n'
         f'gases         {y_gases[-1] * 100:.2f}\n'
         f'liquids       {y_liquids[-1] * 100:.2f}\n'
