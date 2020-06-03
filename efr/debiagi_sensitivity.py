@@ -135,9 +135,9 @@ def debiagi_sa(reactor, sens_analysis):
     # log sensitivity analysis parameters to console
     results1 = (
         f'{" Sensitivity analysis of Debiagi 2018 kinetics ":-^80}\n\n'
-        f'n         = {n}\n'
+        f'n         = {n:,}\n'
         f'shape     = {param_values.shape}\n'
-        f'samples   = {param_values.shape[0]}\n'
+        f'samples   = {param_values.shape[0]:,}\n'
     )
     logging.info(results1)
 
@@ -186,99 +186,64 @@ def debiagi_sa(reactor, sens_analysis):
     # --- Figure 1 ---
     fig, axs = plt.subplots(nrows=3, ncols=4, figsize=(13.5, 8), tight_layout=True)
 
-    # cellulose
-    axs[0, 0].scatter(param_values[:, 0], y_out[:, 0], s=20, alpha=0.5, color='C0', edgecolors='none')
-    axs[0, 0].set_xlabel('CELL')
-    axs[0, 0].set_ylabel('Gases')
+    # cellulose for rows 0, 1, 2 and column 0
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 0].hexbin(param_values[:, 0], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 0].axis([param_values[:, 0].min(), param_values[:, 0].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 0].set_xlabel('CELL')
+        axs[i, 0].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 0])     # colorbar represents counts
 
-    axs[1, 0].scatter(param_values[:, 0], y_out[:, 1], s=20, alpha=0.5, color='C0', edgecolors='none')
-    axs[1, 0].set_xlabel('CELL')
-    axs[1, 0].set_ylabel('Liquids')
+    # hemicellulose for rows 0, 1, 2 and column 1
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 1].hexbin(param_values[:, 1], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 1].axis([param_values[:, 1].min(), param_values[:, 1].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 1].set_xlabel('GMSW')
+        axs[i, 1].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 1])
 
-    axs[2, 0].scatter(param_values[:, 0], y_out[:, 2], s=20, alpha=0.5, color='C0', edgecolors='none')
-    axs[2, 0].set_xlabel('CELL')
-    axs[2, 0].set_ylabel('Solids')
+    # lignin-c for rows 0, 1, 2 and column 2
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 2].hexbin(param_values[:, 2], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 2].axis([param_values[:, 2].min(), param_values[:, 2].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 2].set_xlabel('LIGC')
+        axs[i, 2].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 2])
 
-    # hemicellulose
-    axs[0, 1].scatter(param_values[:, 1], y_out[:, 0], s=20, alpha=0.5, color='C1', edgecolors='none')
-    axs[0, 1].set_xlabel('GMSW')
-    axs[0, 1].set_ylabel('Gases')
-
-    axs[1, 1].scatter(param_values[:, 1], y_out[:, 1], s=20, alpha=0.5, color='C1', edgecolors='none')
-    axs[1, 1].set_xlabel('GMSW')
-    axs[1, 1].set_ylabel('Liquids')
-
-    axs[2, 1].scatter(param_values[:, 1], y_out[:, 2], s=20, alpha=0.5, color='C1', edgecolors='none')
-    axs[2, 1].set_xlabel('GMSW')
-    axs[2, 1].set_ylabel('Solids')
-
-    # lignin-c
-    axs[0, 2].scatter(param_values[:, 2], y_out[:, 0], s=20, alpha=0.5, color='C2', edgecolors='none')
-    axs[0, 2].set_xlabel('LIGC')
-    axs[0, 2].set_ylabel('Gases')
-
-    axs[1, 2].scatter(param_values[:, 2], y_out[:, 1], s=20, alpha=0.5, color='C2', edgecolors='none')
-    axs[1, 2].set_xlabel('LIGC')
-    axs[1, 2].set_ylabel('Liquids')
-
-    axs[2, 2].scatter(param_values[:, 2], y_out[:, 2], s=20, alpha=0.5, color='C2', edgecolors='none')
-    axs[2, 2].set_xlabel('LIGC')
-    axs[2, 2].set_ylabel('Solids')
-
-    # lignin-h
-    axs[0, 3].scatter(param_values[:, 3], y_out[:, 0], s=20, alpha=0.5, color='C3', edgecolors='none')
-    axs[0, 3].set_xlabel('LIGH')
-    axs[0, 3].set_ylabel('Gases')
-
-    axs[1, 3].scatter(param_values[:, 3], y_out[:, 1], s=20, alpha=0.5, color='C3', edgecolors='none')
-    axs[1, 3].set_xlabel('LIGH')
-    axs[1, 3].set_ylabel('Liquids')
-
-    axs[2, 3].scatter(param_values[:, 3], y_out[:, 2], s=20, alpha=0.5, color='C3', edgecolors='none')
-    axs[2, 3].set_xlabel('LIGH')
-    axs[2, 3].set_ylabel('Solids')
+    # lignin-h for rows 0, 1, 2 and column 3
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 3].hexbin(param_values[:, 3], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 3].axis([param_values[:, 3].min(), param_values[:, 3].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 3].set_xlabel('LIGH')
+        axs[i, 3].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 3])
 
     # --- Figure 2 ---
     fig, axs = plt.subplots(nrows=3, ncols=3, figsize=(10, 8), tight_layout=True)
 
-    # lignin-o
-    axs[0, 0].scatter(param_values[:, 4], y_out[:, 0], s=20, alpha=0.5, color='C4', edgecolors='none')
-    axs[0, 0].set_xlabel('LIGO')
-    axs[0, 0].set_ylabel('Gas')
+    # lignin-o for rows 0, 1, 2 and column 0
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 0].hexbin(param_values[:, 4], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 0].axis([param_values[:, 4].min(), param_values[:, 4].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 0].set_xlabel('LIGO')
+        axs[i, 0].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 0])     # colorbar represents counts
 
-    axs[1, 0].scatter(param_values[:, 4], y_out[:, 1], s=20, alpha=0.5, color='C4', edgecolors='none')
-    axs[1, 0].set_xlabel('LIGO')
-    axs[1, 0].set_ylabel('Liquid')
+    # tann for rows 0, 1, 2 and column 1
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 1].hexbin(param_values[:, 5], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 1].axis([param_values[:, 5].min(), param_values[:, 5].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 1].set_xlabel('TANN')
+        axs[i, 1].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 1])
 
-    axs[2, 0].scatter(param_values[:, 4], y_out[:, 2], s=20, alpha=0.5, color='C4', edgecolors='none')
-    axs[2, 0].set_xlabel('LIGO')
-    axs[2, 0].set_ylabel('Solid')
-
-    # tann
-    axs[0, 1].scatter(param_values[:, 5], y_out[:, 0], s=20, alpha=0.5, color='C5', edgecolors='none')
-    axs[0, 1].set_xlabel('TANN')
-    axs[0, 1].set_ylabel('Gas')
-
-    axs[1, 1].scatter(param_values[:, 5], y_out[:, 1], s=20, alpha=0.5, color='C5', edgecolors='none')
-    axs[1, 1].set_xlabel('TANN')
-    axs[1, 1].set_ylabel('Liquid')
-
-    axs[2, 1].scatter(param_values[:, 5], y_out[:, 2], s=20, alpha=0.5, color='C5', edgecolors='none')
-    axs[2, 1].set_xlabel('TANN')
-    axs[2, 1].set_ylabel('Solid')
-
-    # tgl
-    axs[0, 2].scatter(param_values[:, 6], y_out[:, 0], s=20, alpha=0.5, color='C6', edgecolors='none')
-    axs[0, 2].set_xlabel('TGL')
-    axs[0, 2].set_ylabel('Gas')
-
-    axs[1, 2].scatter(param_values[:, 6], y_out[:, 1], s=20, alpha=0.5, color='C6', edgecolors='none')
-    axs[1, 2].set_xlabel('TGL')
-    axs[1, 2].set_ylabel('Liquid')
-
-    axs[2, 2].scatter(param_values[:, 6], y_out[:, 2], s=20, alpha=0.5, color='C6', edgecolors='none')
-    axs[2, 2].set_xlabel('TGL')
-    axs[2, 2].set_ylabel('Solid')
+    # tgl for rows 0, 1, 2 and column 2
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 2].hexbin(param_values[:, 6], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 2].axis([param_values[:, 6].min(), param_values[:, 6].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 2].set_xlabel('TGL')
+        axs[i, 2].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 2])
 
     # --- Figure 3 ---
     x = np.arange(len(problem['names']))
