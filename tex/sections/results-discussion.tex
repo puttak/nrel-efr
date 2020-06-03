@@ -2,6 +2,80 @@
 
 \section{Results and discussion}
 
+Characterization of the biomass along with batch reactor and sensitivity analysis results are discussed in this section.
+
+\subsection{Blend3 biomass composition}
+
+Several approaches were investigated to characterize the Blend3 feedstock for use with the Debiagi pyrolysis kinetics. The first approach uses the characterization method discussed in the Debiagi et al. 2015 paper where carbon and hydrogen from ultimate analysis is used to determine the biomass composition \cite{Debiagi-2015}. To use this approach for the Blend3 feedstock, the mass fraction of C and H on a dry ash-free basis (last column in Table \ref{tab:blend3-ult-bases}) is used for the biomass characterization procedure.
+
+\begin{table}[H]
+    \centering
+    \caption{Ultimate analysis bases calculated from the Blend3 feedstock as-received data. Mass percent values are given for as-received (ar), dry, and dry ash-free (daf) basis.}
+    \label{tab:blend3-ult-bases}
+    \begin{tabular}{lrrrr}
+        \toprule
+        Element & \% ar & \% dry & \% daf & \% daf \\
+        \midrule
+        C        & 49.52 & 52.70 & 53.06 & 53.16 \\
+        H        & 5.28  & 5.62  & 5.66  & 5.67  \\
+        O        & 38.35 & 40.82 & 41.10 & 41.17 \\
+        N        & 0.15  & 0.16  & 0.16  &       \\
+        S        & 0.02  & 0.02  & 0.02  &       \\
+        ash      & 0.64  & 0.68  &       &       \\
+        moisture & 6.04  &       &       &       \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Using a mass fraction of C as 53.16\% and H as 5.67\%, the Blend3 characterization and reference mixtures are shown in Figure \ref{fig:blend3-biocharact-ult} while the estimated biomass composition is given in Table \ref{tab:blend3-biocomp-ult}. While this approach is useful for limited feedstock data, its accuracy is questionable when compared to experimental measurements. For example, chemical analysis of the Blend3 feedstock measured a lignin composition of 29.48\% (see Table \ref{tab:blend3-chem-analysis}) whereas the characterization method using ultimate analysis data estimates a total lignin composition greater than 59\%.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/blend3-biocharact-ult.pdf}
+    \caption{Characterization of the Blend3 feedstock using ultimate analysis data. Reference mixtures (rm) are labeled with square markers.}
+    \label{fig:blend3-biocharact-ult}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \caption{Biomass composition estimated from the Blend3 ultimate analysis data using splitting factors $\alpha = 0.6$, $\beta = 0.8$, $\gamma = 0.8$, $\delta = 1.0$, and $\epsilon = 1.0$.}
+    \label{tab:blend3-biocomp-ult}
+    \begin{tabular}{lr}
+        \toprule
+        Biomass composition & \% daf \\
+        \midrule
+        cellulose     & 26.38 \\
+        hemicellulose & 14.33 \\
+        lignin-c      & 7.84  \\
+        lignin-h      & 5.27  \\
+        lignin-o      & 46.18 \\
+        tann          & 0.00  \\
+        tgl           & 0.00  \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Biomass composition for the Blend3 feedstock was estimated from the chemical analysis values given previously in Table \ref{tab:blend3-chem-analysis}.
+
+\begin{table}[H]
+    \centering
+    \caption{Blend3 biomass composition mass percent, dry basis.}
+    \begin{tabular}{llr}
+        \toprule
+        Biomass composition & Description & \% dry \\
+        \midrule
+        cellulose     & glucan                                    & 38.95 \\
+        hemicellulose & acetyl, arabinan, galactan, mannan, xylan & 24.56 \\
+        lignin        & as measured                               & 29.48 \\
+        tann          & here & 2.90  \\
+        tgl           & here & 3.49  \\
+        ash           & here & 0.63  \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Batch reactor conversion and yields}
+
 Here.
 
 \subsection{Sensitivity analysis}

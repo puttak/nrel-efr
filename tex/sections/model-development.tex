@@ -129,22 +129,27 @@ Chemical species in the Debiagi et al. kinetic scheme for biomass pyrolysis are 
 
 Here.
 
-\begin{table}[H]
-    \centering
-    \caption{Blend3 biomass composition mass percent, dry basis. Values are calculated from Table \ref{tab:chem-analysis}.}
-    \begin{tabular}{lr}
-        \toprule
-        Biomass composition & \% dry \\
-        \midrule
-        cellulose     & 38.95 \\
-        hemicellulose & 24.56 \\
-        lignin        & 29.48 \\
-        tann          & 2.90  \\
-        tgl           & 3.49  \\
-        ash           & 0.63  \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+\subsection{Batch reactor}
+
+The material balance for a typical chemical reactor is shown in Equation \ref{eq:typical-balance} where $C_0$ is inlet concentration, $C$ is outlet concentration, $v$ is volumetric flow rate, $r$ is the reaction rate, and $V$ is the reactor volume.
+
+\begin{equation}
+    \label{eq:typical-balance}
+    \begin{aligned}
+        accumulation &= input - output + reaction \\
+        \frac{dC}{dt} V &= v C_0 - v C + r V
+    \end{aligned}
+\end{equation}
+
+A batch reactor was modeled to understand the time scales associated with the biomass pyrolysis kinetics. For the batch reactor, input and output is zero therefore only the accumulation and reaction terms remain in the material balance. For a constant volumne reactor the $V$ terms cancel out; therefore, Equation \ref{eq:batch-balance} represents the material balance for a batch reactor model.
+
+\begin{equation}
+    \label{eq:batch-balance}
+    \begin{aligned}
+        accumulation &= 0 - 0 + reaction \\
+        \frac{dC}{dt} &= r
+    \end{aligned}
+\end{equation}
 
 \subsection{Sensitivity analysis}
 
