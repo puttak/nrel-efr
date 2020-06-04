@@ -27,7 +27,7 @@ Several approaches were investigated to characterize the Blend3 feedstock for us
     \end{tabular}
 \end{table}
 
-Using a mass fraction of C as 53.16\% and H as 5.67\%, the Blend3 characterization and reference mixtures are shown in Figure \ref{fig:blend3-biocharact-ult} while the estimated biomass composition is given in Table \ref{tab:blend3-biocomp-ult}. While this approach is useful for limited feedstock data, its accuracy is questionable when compared to experimental measurements. For example, chemical analysis of the Blend3 feedstock measured a lignin composition of 29.48\% (see Table \ref{tab:blend3-chem-analysis}) whereas the characterization method using ultimate analysis data estimates a total lignin composition greater than 59\%.
+The Blend3 characterizaton was performed using a carbon mass fraction of 53.16\%, hydrogen mass fraction of 5.67\%, and splitting parameters $\alpha = 0.6$, $\beta = 0.8$, $\gamma = 0.8$, $\delta = 1.0$, and $\epsilon = 1.0$ which do not account for extractives in the feedstock. Results from this characterization are shown in Figure \ref{fig:blend3-biocharact-ult} and the associated biomass composition is given in Table \ref{tab:blend3-biocomp-ult}. While this approach is useful for limited feedstock data, its accuracy is questionable when compared to experimental measurements. For example, chemical analysis of the Blend3 feedstock provides a lignin composition of 29.48\% (see Table \ref{tab:blend3-chem-analysis}) whereas the characterization method using ultimate analysis data estimates a total lignin composition greater than 59\%.
 
 \begin{figure}[H]
     \centering
@@ -38,7 +38,7 @@ Using a mass fraction of C as 53.16\% and H as 5.67\%, the Blend3 characterizati
 
 \begin{table}[H]
     \centering
-    \caption{Biomass composition estimated from the Blend3 ultimate analysis data using splitting factors $\alpha = 0.6$, $\beta = 0.8$, $\gamma = 0.8$, $\delta = 1.0$, and $\epsilon = 1.0$.}
+    \caption{Biomass composition estimated from the Blend3 ultimate analysis data. Values are mass basis.}
     \label{tab:blend3-biocomp-ult}
     \begin{tabular}{lr}
         \toprule
@@ -55,21 +55,30 @@ Using a mass fraction of C as 53.16\% and H as 5.67\%, the Blend3 characterizati
     \end{tabular}
 \end{table}
 
-Biomass composition for the Blend3 feedstock was estimated from the chemical analysis values given previously in Table \ref{tab:blend3-chem-analysis}.
+To improve the Blend3 characterization based on ultimate analysis data, the splitting parameters were adjusted to account for extractives in the feedstock by using $\alpha = 0.56$, $\beta = 0.6$, $\gamma = 0.6$, $\delta = 0.78$, and $\epsilon = 0.88$. Also, since the uncertainty in the ultimate analysis data is unknown (see Table \ref{tab:blend3-ult}) the carbon mass fraction was adjusted to 51\% and the hydrogen mass fraction to 6\%. Results from these adjustments are presented in Figure \ref{fig:blend3-biocharact-ultmod} and Table \ref{tab:blend3-biocomp-ultmod}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/blend3-biocharact-ultmod.pdf}
+    \caption{Characterization of the Blend3 feedstock using modified ultimate analysis data and adjusting the splitting parameters to account for extractives. Reference mixtures (rm) are labeled with square markers.}
+    \label{fig:blend3-biocharact-ultmod}
+\end{figure}
 
 \begin{table}[H]
     \centering
-    \caption{Blend3 biomass composition mass percent, dry basis.}
-    \begin{tabular}{llr}
+    \caption{Biomass composition estimated from the modified Blend3 ultimate analysis data. Values are mass basis.}
+    \label{tab:blend3-biocomp-ultmod}
+    \begin{tabular}{lr}
         \toprule
-        Biomass composition & Description & \% dry \\
+        Biomass composition & \% daf \\
         \midrule
-        cellulose     & glucan                                    & 38.95 \\
-        hemicellulose & acetyl, arabinan, galactan, mannan, xylan & 24.56 \\
-        lignin        & as measured                               & 29.48 \\
-        tann          & here & 2.90  \\
-        tgl           & here & 3.49  \\
-        ash           & here & 0.63  \\
+        cellulose     & 39.24 \\
+        hemicellulose & 25.12 \\
+        lignin-c      & 8.57  \\
+        lignin-h      & 3.11  \\
+        lignin-o      & 18.00 \\
+        tann          & 2.95  \\
+        tgl           & 3.01  \\
         \bottomrule
     \end{tabular}
 \end{table}
