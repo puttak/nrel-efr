@@ -129,3 +129,81 @@ def plot_temperature(states):
     ax.set_xlabel('Time [s]')
     ax.set_ylabel('Temperature [K]')
     ax.tick_params(color='0.9')
+
+
+def plot_batch_effects(param_values, y_out):
+    """
+    Plot effects of cellulose, hemicellulose, lignin-c, lignin-h, lignin-o,
+    tann, and tgl on batch reactor yields. Yields are presented as grouped
+    chemical species of gases, liquids, and solids.
+
+    Parameters
+    ----------
+    params_values : ndarray
+        Samples generated using Saltelli’s sampling scheme. These samples are
+        inputs to the batch reactor model.
+    y_out : ndarray
+        Batch reactor outputs from the generated Saltelli samples.
+    """
+
+    # --- Figure 1 ---
+    fig, axs = plt.subplots(nrows=3, ncols=4, figsize=(13.5, 8), tight_layout=True)
+
+    # cellulose for rows 0, 1, 2 and column 0
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 0].hexbin(param_values[:, 0], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 0].axis([param_values[:, 0].min(), param_values[:, 0].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 0].set_xlabel('CELL')
+        axs[i, 0].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 0])     # colorbar represents counts
+
+    # hemicellulose for rows 0, 1, 2 and column 1
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 1].hexbin(param_values[:, 1], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 1].axis([param_values[:, 1].min(), param_values[:, 1].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 1].set_xlabel('GMSW')
+        axs[i, 1].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 1])
+
+    # lignin-c for rows 0, 1, 2 and column 2
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 2].hexbin(param_values[:, 2], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 2].axis([param_values[:, 2].min(), param_values[:, 2].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 2].set_xlabel('LIGC')
+        axs[i, 2].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 2])
+
+    # lignin-h for rows 0, 1, 2 and column 3
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 3].hexbin(param_values[:, 3], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 3].axis([param_values[:, 3].min(), param_values[:, 3].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 3].set_xlabel('LIGH')
+        axs[i, 3].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 3])
+
+    # --- Figure 2 ---
+    fig, axs = plt.subplots(nrows=3, ncols=3, figsize=(10, 8), tight_layout=True)
+
+    # lignin-o for rows 0, 1, 2 and column 0
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 0].hexbin(param_values[:, 4], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 0].axis([param_values[:, 4].min(), param_values[:, 4].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 0].set_xlabel('LIGO')
+        axs[i, 0].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 0])     # colorbar represents counts
+
+    # tann for rows 0, 1, 2 and column 1
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 1].hexbin(param_values[:, 5], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 1].axis([param_values[:, 5].min(), param_values[:, 5].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 1].set_xlabel('TANN')
+        axs[i, 1].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 1])
+
+    # tgl for rows 0, 1, 2 and column 2
+    for i, g in enumerate(['Gases', 'Liquids', 'Solids']):
+        hb = axs[i, 2].hexbin(param_values[:, 6], y_out[:, i], gridsize=50, cmap='viridis')
+        axs[i, 2].axis([param_values[:, 6].min(), param_values[:, 6].max(), y_out[:, i].min(), y_out[:, i].max()])
+        axs[i, 2].set_xlabel('TGL')
+        axs[i, 2].set_ylabel(g)
+        fig.colorbar(hb, ax=axs[i, 2])
