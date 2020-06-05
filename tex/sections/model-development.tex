@@ -2,7 +2,7 @@
 
 \section{Model development}
 
-Details about the biomass pyrolysis kinetics, biomass characterization method, and computational models developed for the entrained flow reactor are discussed in this section.
+Details about the biomass pyrolysis kinetics, biomass characterization method, and computational models developed for the entrained flow reactor are discussed in the following sections.
 
 \subsection{Pyrolysis kinetics}
 
@@ -125,7 +125,36 @@ The kinetic reaction mechanisms presented in the Debiagi et al. 2018 paper are u
 
 \subsection{Biomass characterization}
 
-The Debiagi kinetics rely on an initial biomass composition defined as cellulolose, hemicellulose, lignin-c, lignin-h, lignin-o, tannins, and triglycerides. Ideally, the composition of the biomass would be directly measured; otherwise, the characterization method discussed in the Debiagi et al. 2015 paper estimates the composition based on elemental analysis data \cite{Debiagi-2015}. The characterization method utilizes carbon and hydrogen obtained from elemental (ultimate) analysis of the biomass to predict the biochemical composition in terms of cellulose, hemicellulose, and lignin. Splitting parameters $\alpha$, $\beta$, $\gamma$, $\delta$, $\epsilon$ are used to improve the validity of the characterization procedure by accounting for extractives in the biomass.
+The Debiagi kinetics rely on an initial biomass composition defined as cellulolose, hemicellulose, lignin-c, lignin-h, lignin-o, tannins, and triglycerides. According to the Debiagi et al. 2015 paper, the chemical components of the biomass are defined as shown below in Table \ref{tab:chem-components} \cite{Debiagi-2015}. The Debiagi article does not provide information on how to experimentally derive these components; therefore, the reader must decide on appropriate measurement techniques.
+
+\begin{table}[H]
+    \centering
+    \caption{Chemical components of biomass according to Debiagi et al. \cite{Debiagi-2015}.}
+    \label{tab:chem-components}
+    \begin{tabular}{lp{2.2in}}
+        \toprule
+        Biomass composition & Description \\
+        \midrule
+        cellulose     & glucan \\
+        \addlinespace[0.1in]
+        hemicellulose & mixture of sugars such as hexoses and pentoses; mainly xylose, mannose, galactose, and arabinose \\
+        \addlinespace[0.1in]
+        lignin        & aromatic alcohols such as coniferyl, sinapyl, p-coumaryl alcohol \\
+        \addlinespace[0.1in]
+        lignin-c      & carbon-rich lignin \\
+        \addlinespace[0.1in]
+        lignin-h      & hydrogen-rich lignin \\
+        \addlinespace[0.1in]
+        lignin-o      & oxygen-rich lignin \\
+        \addlinespace[0.1in]
+        tannins       & hydrophilic extractives, phenolics, ethanol and water, represented by a gallocatechin polymer \\
+        \addlinespace[0.1in]
+        triglycerides & hydrophobic extractives, hexane and ether, linoleic acid \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Ideally, the composition of the biomass would be directly measured; otherwise, the characterization method discussed in the Debiagi paper estimates the composition based on elemental analysis data \cite{Debiagi-2015}. The characterization method utilizes carbon and hydrogen obtained from elemental (ultimate) analysis of the biomass to predict the biochemical composition in terms of cellulose, hemicellulose, and lignin. Splitting parameters $\alpha$, $\beta$, $\gamma$, $\delta$, $\epsilon$ are used to improve the validity of the characterization procedure by accounting for extractives in the biomass.
 
 \subsection{Batch reactor}
 
