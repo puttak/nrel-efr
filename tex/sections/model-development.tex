@@ -2,11 +2,11 @@
 
 \section{Model development}
 
-Details about the biomass pyrolysis kinetics and computational models developed for the entrained flow reactor are discussed in this section.
+Details about the biomass pyrolysis kinetics, biomass characterization method, and computational models developed for the entrained flow reactor are discussed in this section.
 
 \subsection{Pyrolysis kinetics}
 
-The kinetic reaction mechanisms presented by Debiagi et al. are used to model biomass pyrolysis in the entrained flow reactor. These reactions are shown below in Table \ref{tab:chem-kinetics}.
+The kinetic reaction mechanisms presented in the Debiagi et al. 2018 paper are used to model biomass pyrolysis in the entrained flow reactor \cite{Debiagi-2018}. Table \ref{tab:chem-kinetics} summarizes the reactions along with the associated prefactors and activation energies. A description of the chemical species in the Debiagi et al. kinetic scheme is provided in Table \ref{tab:chem-species}. Species are grouped into solid, metaplastic, gas, and liquid phases.
 
 \begin{center}
     \footnotesize
@@ -54,12 +54,10 @@ The kinetic reaction mechanisms presented by Debiagi et al. are used to model bi
     \end{longtable}
 \end{center}
 
-Chemical species in the Debiagi et al. kinetic scheme for biomass pyrolysis are listed in Table \ref{tab:chem-species}. Species are grouped into solid, metaplastic, gas, and liquid phases.
-
 \begin{center}
     \footnotesize
     \begin{longtable}{cllll}
-        \caption{Chemical species in the Debiagi kinetics scheme for biomass pyrolysis. Source \cite{Debiagi-2018}.}
+        \caption{Description of the chemical species in the Debiagi kinetics scheme for biomass pyrolysis. Source \cite{Debiagi-2018}.}
         \label{tab:chem-species} \\
         \toprule
         Item & Name & Formula & Phase & Description \\
@@ -127,7 +125,7 @@ Chemical species in the Debiagi et al. kinetic scheme for biomass pyrolysis are 
 
 \subsection{Biomass characterization}
 
-Here.
+The Debiagi kinetics rely on an initial biomass composition defined as cellulolose, hemicellulose, lignin-c, lignin-h, lignin-o, tannins, and triglycerides. Ideally, the composition of the biomass would be directly measured; otherwise, the characterization method discussed in the Debiagi et al. 2015 paper estimates the composition based on elemental analysis data \cite{Debiagi-2015}. The characterization method utilizes carbon and hydrogen obtained from elemental (ultimate) analysis of the biomass to predict the biochemical composition in terms of cellulose, hemicellulose, and lignin. Splitting parameters $\alpha$, $\beta$, $\gamma$, $\delta$, $\epsilon$ are used to improve the validity of the characterization procedure by accounting for extractives in the biomass.
 
 \subsection{Batch reactor}
 
@@ -153,4 +151,4 @@ A batch reactor was modeled to understand the time scales associated with the bi
 
 \subsection{Sensitivity analysis}
 
-Here.
+A sensitivity analysis was performed with the Debiagi pyrolysis kinetics to investigate the effects of biomass composition on product yields. The awesome SALib Python package was utilized for sample generation and prediction of the Sobol indices \cite{Herman-2017}. For the sensitivity analysis model, a sample represents the biomass composition as cellulose, hemicellulose, lignin-c, lignin-h, lignin-o, tannins, and triglycerides. This sample (or composition) is used in a reactor model at a certain temperature and pressure to predict pyrolysis yields. The sensitivity analysis model applies this approach to a large sample matrix then uses the generated data to perform a Sobol analysis.

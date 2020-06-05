@@ -27,7 +27,7 @@ Several approaches were investigated to characterize the Blend3 feedstock for us
     \end{tabular}
 \end{table}
 
-The Blend3 characterizaton was performed using a carbon mass fraction of 53.16\%, hydrogen mass fraction of 5.67\%, and splitting parameters $\alpha = 0.6$, $\beta = 0.8$, $\gamma = 0.8$, $\delta = 1.0$, and $\epsilon = 1.0$ which do not account for extractives in the feedstock. Results from this characterization are shown in Figure \ref{fig:blend3-biocharact-ult} and the associated biomass composition is given in Table \ref{tab:blend3-biocomp-ult}. While this approach is useful for limited feedstock data, its accuracy is questionable when compared to experimental measurements. For example, chemical analysis of the Blend3 feedstock provides a lignin composition of 29.48\% (see Table \ref{tab:blend3-chem-analysis}) whereas the characterization method using ultimate analysis data estimates a total lignin composition greater than 59\%.
+\textbf{Case 1:} The first approach to characterize the Blend3 feedstock was performed using a carbon mass fraction of 53.16\%, hydrogen mass fraction of 5.67\%, and splitting parameters $\alpha = 0.6$, $\beta = 0.8$, $\gamma = 0.8$, $\delta = 1.0$, and $\epsilon = 1.0$ which do not account for extractives in the feedstock. Results from this characterization are shown in Figure \ref{fig:blend3-biocharact-ult} and the associated biomass composition is given in Table \ref{tab:blend3-biocomp}. While this approach is useful for limited feedstock data, its accuracy is questionable when compared to experimental measurements. For example, chemical analysis of the Blend3 feedstock provides a lignin composition of 29.48\% (see Table \ref{tab:blend3-chem-analysis}) whereas the characterization method using ultimate analysis data estimates a total lignin composition greater than 59\%.
 
 \begin{figure}[H]
     \centering
@@ -36,26 +36,7 @@ The Blend3 characterizaton was performed using a carbon mass fraction of 53.16\%
     \label{fig:blend3-biocharact-ult}
 \end{figure}
 
-\begin{table}[H]
-    \centering
-    \caption{Biomass composition estimated from the Blend3 ultimate analysis data. Values are mass basis.}
-    \label{tab:blend3-biocomp-ult}
-    \begin{tabular}{lr}
-        \toprule
-        Biomass composition & \% daf \\
-        \midrule
-        cellulose     & 26.38 \\
-        hemicellulose & 14.33 \\
-        lignin-c      & 7.84  \\
-        lignin-h      & 5.27  \\
-        lignin-o      & 46.18 \\
-        tann          & 0.00  \\
-        tgl           & 0.00  \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-To improve the Blend3 characterization based on ultimate analysis data, the splitting parameters were adjusted to account for extractives in the feedstock by using $\alpha = 0.56$, $\beta = 0.6$, $\gamma = 0.6$, $\delta = 0.78$, and $\epsilon = 0.88$. Also, since the uncertainty in the ultimate analysis data is unknown (see Table \ref{tab:blend3-ult}) the carbon mass fraction was adjusted to 51\% and the hydrogen mass fraction to 6\%. Results from these adjustments are presented in Figure \ref{fig:blend3-biocharact-ultmod} and Table \ref{tab:blend3-biocomp-ultmod}.
+\textbf{Case 2:} To improve the Blend3 characterization based on ultimate analysis data, the splitting parameters were adjusted to account for extractives in the feedstock by using $\alpha = 0.56$, $\beta = 0.6$, $\gamma = 0.6$, $\delta = 0.78$, and $\epsilon = 0.88$. Also, since the uncertainty in the ultimate analysis data is unknown (see Table \ref{tab:blend3-ult}) the carbon mass fraction was adjusted to 51\% and the hydrogen mass fraction to 6\%. Results from these adjustments are presented in Figure \ref{fig:blend3-biocharact-ultmod} and Table \ref{tab:blend3-biocomp}.
 
 \begin{figure}[H]
     \centering
@@ -64,21 +45,23 @@ To improve the Blend3 characterization based on ultimate analysis data, the spli
     \label{fig:blend3-biocharact-ultmod}
 \end{figure}
 
+\textbf{Case 3:} The final approach to characterize the Blend3 feedstock, was to use chemical analysis data (see Table \ref{tab:blend3-chem-analysis}) to determine the biomass composition. Cellulose is represented by glucan while hemicellulose is comprised of arabinan, galactan, mannan, xylan, free fructose, free glucose, and sucrose. The measurement technique to determine the lignin components is unknown; therefore, the lignin is evenly divided into the carbon, hydrogen, and oxygen fractions. Tannins are represented by acetyl, water extractives, and ethanol extractives while ash is the non-structural and structural inorganics. Finally, the biomass composition based on the chemical analysis measurements is given in Table \ref{tab:blend3-biocomp}.
+
 \begin{table}[H]
     \centering
-    \caption{Biomass composition estimated from the modified Blend3 ultimate analysis data. Values are mass basis.}
-    \label{tab:blend3-biocomp-ultmod}
-    \begin{tabular}{lr}
+    \caption{Biomass composition for the Blend3 feedstock. Values are reported as mass percent on a dry ash-free basis (\% daf).}
+    \label{tab:blend3-biocomp}
+    \begin{tabular}{lrrr}
         \toprule
-        Biomass composition & \% daf \\
+        Biomass composition & Case 1 & Case 2 & Case 3 \\
         \midrule
-        cellulose     & 39.24 \\
-        hemicellulose & 25.12 \\
-        lignin-c      & 8.57  \\
-        lignin-h      & 3.11  \\
-        lignin-o      & 18.00 \\
-        tann          & 2.95  \\
-        tgl           & 3.01  \\
+        cellulose     & 26.38 & 39.24 & 39.19 \\
+        hemicellulose & 14.33 & 25.12 & 23.26 \\
+        lignin-c      & 7.84  & 8.57  & 9.89 \\
+        lignin-h      & 5.27  & 3.11  & 9.89 \\
+        lignin-o      & 46.18 & 18.00 & 9.89 \\
+        tannins       & 0.00  & 2.95  & 7.88 \\
+        triglycerides & 0.00  & 3.01  & 0.00 \\
         \bottomrule
     \end{tabular}
 \end{table}
