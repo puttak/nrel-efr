@@ -4,13 +4,38 @@
 
 Characterization of the biomass along with batch reactor and sensitivity analysis results are discussed in this section.
 
+\subsection{Pyrolysis kinetics sensitivity analysis}
+
+A sensitivity analysis of the Debiagi pyrolysis kinetics in a batch reactor model was performed using 16,000 samples, a reaction time of 10 seconds, a reactor temperature of 773.15 K, and a reactor pressure of 101,325 Pa. Each sample represents some combination of cellulose, hemicellulose, lignin-c, lignin-h, lignin-o, tannins, and triglycerides. Batch reactor yields from the samples are shown in Figures \ref{fig:batch-sa1} and \ref{fig:batch-sa2}. The Sobol sensitivity analysis based on the batch reactor results is presented in Figure \ref{fig:batch-sa3}.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{figures/sa-hexbin1-n1000.pdf}}
+    \caption{Batch reactor results for cellulose, hemicellulose (GMSW), carbon-rich lignin (LIGC), and hydrogen-rich lignin (LIGH) using 16,000 samples. Reaction time is 10 seconds at 773.15 K and 101,325 Pa. Colorbar represents bin count.}
+    \label{fig:batch-sa1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/sa-hexbin2-n1000.pdf}
+    \caption{Batch reactor results for oxygen-rich lignin (LIGO), tannins (TANN), and triglycerides (TGL) using 16,000 samples. Reaction time is 10 seconds at 773.15 K and 101,325 Pa. Colorbar represents bin count.}
+    \label{fig:batch-sa2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/sa-bar-n1000.pdf}
+    \caption{First-order (S1) and total-order (ST) Sobol indices for biomass composition with reactants grouped as gases, liquids, and solids using 16,000 samples.}
+    \label{fig:batch-sa3}
+\end{figure}
+
 \subsection{Blend3 biomass composition}
 
 Several approaches were investigated to characterize the Blend3 feedstock for use with the Debiagi pyrolysis kinetics. The first approach uses the characterization method discussed in the Debiagi et al. 2015 paper where carbon and hydrogen from ultimate analysis is used to determine the biomass composition \cite{Debiagi-2015}. To use this approach for the Blend3 feedstock, the mass fraction of C and H on a dry ash-free basis (last column in Table \ref{tab:blend3-ult-bases}) is used for the biomass characterization procedure.
 
 \begin{table}[H]
     \centering
-    \caption{Ultimate analysis bases calculated from the Blend3 feedstock as-received data. Mass percent values are given for as-received (ar), dry, and dry ash-free (daf) basis.}
+    \caption{Ultimate analysis bases for the Blend3 feedstock. Mass percent values are given for as-received (ar), dry, and dry ash-free (daf) basis.}
     \label{tab:blend3-ult-bases}
     \begin{tabular}{lrrrr}
         \toprule
@@ -66,28 +91,6 @@ Several approaches were investigated to characterize the Blend3 feedstock for us
     \end{tabular}
 \end{table}
 
-\subsection{Batch reactor conversion and yields}
+\subsection{Blend3 batch reactor conversion and yields}
 
 Here.
-
-\subsection{Sensitivity analysis}
-
-Results for the sensitivity analysis of the Debiagi kinetics using a batch reactor model are shown in Tables X.
-
-\begin{figure}[H]
-    \centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{figures/sa-hexbin1-n1000.pdf}}
-    \caption{Batch reactor results for cellulose, hemicellulose (GMSW), carbon-rich lignin (LIGC), and hydrogen-rich lignin (LIGH) using 16,000 samples. Reaction time is 10 seconds at 773.15 K and 101,325 Pa. Colorbar represents bin count.}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/sa-hexbin2-n1000.pdf}
-    \caption{Batch reactor results for oxygen-rich lignin (LIGO), tannins (TANN), and triglycerides (TGL) using 16,000 samples. Reaction time is 10 seconds at 773.15 K and 101,325 Pa. Colorbar represents bin count.}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/sa-bar-n1000.pdf}
-    \caption{First-order (S1) and total-order (ST) Sobol indices for biomass composition with reactants grouped as gases, liquids, and solids using 16,000 samples.}
-\end{figure}
