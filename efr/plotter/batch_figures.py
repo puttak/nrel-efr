@@ -6,70 +6,86 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def _config(ax, xlabel, ylabel):
+def _style_line(ax, xlabel, ylabel, legend=None):
     """
     Configure and style the plot figure.
     """
     ax.grid(True, color='0.9')
-    ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     ax.set_frame_on(False)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.tick_params(color='0.9')
 
+    if legend == 'side':
+        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    elif legend == 'best':
+        ax.legend(loc='best', frameon=False)
 
-def plot_sw_biocomp(states):
+
+def _style_barh(ax):
     """
-    Plot concentrations representing the softwood biomass composition.
+    Style for barh plot.
     """
-    fig, ax = plt.subplots(tight_layout=True)
-    ax.plot(states.t, states('CELL').Y[:, 0], label='CELL')
-    ax.plot(states.t, states('GMSW').Y[:, 0], label='GMSW')
-    ax.plot(states.t, states('LIGC').Y[:, 0], label='LIGC')
-    ax.plot(states.t, states('LIGH').Y[:, 0], label='LIGH')
-    ax.plot(states.t, states('LIGO').Y[:, 0], label='LIGO')
-    ax.plot(states.t, states('TANN').Y[:, 0], label='TANN')
-    ax.plot(states.t, states('TGL').Y[:, 0], label='TGL')
-    _config(ax, xlabel='Time [s]', ylabel='Mass fraction [-]')
-
-
-def plot_solids(states, sp_solids):
-    """
-    Plot solids concentrations.
-    """
-    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, sharey=True, figsize=(10, 4.8), tight_layout=True)
-    ax1.plot(states.t, states('CELL').Y[:, 0], label='CELL')
-    ax1.plot(states.t, states('CELLA').Y[:, 0], label='CELLA')
-    ax1.plot(states.t, states('GMSW').Y[:, 0], label='GMSW')
-    ax1.plot(states.t, states('HCE1').Y[:, 0], label='HCE1')
-    ax1.plot(states.t, states('HCE2').Y[:, 0], label='HCE2')
-    ax1.plot(states.t, states('ITANN').Y[:, 0], label='ITANN')
-    ax1.plot(states.t, states('LIG').Y[:, 0], label='LIG')
-    ax1.plot(states.t, states('LIGC').Y[:, 0], label='LIGC')
-    ax2.plot(states.t, states('LIGCC').Y[:, 0], label='LIGCC')
-    ax2.plot(states.t, states('LIGH').Y[:, 0], label='LIGH')
-    ax2.plot(states.t, states('LIGO').Y[:, 0], label='LIGO')
-    ax2.plot(states.t, states('LIGOH').Y[:, 0], label='LIGOH')
-    ax2.plot(states.t, states('TANN').Y[:, 0], label='TANN')
-    ax2.plot(states.t, states('TGL').Y[:, 0], label='TGL')
-    ax2.plot(states.t, states('CHAR').Y[:, 0], label='CHAR')
-    _config(ax1, xlabel='Time [s]', ylabel='Mass fraction [-]')
-    _config(ax2, xlabel='Time [s]', ylabel='')
-
-    ys = [states(sp).Y[:, 0][-1] for sp in sp_solids]
-    ypos = np.arange(len(sp_solids))
-
-    fig, ax = plt.subplots(tight_layout=True)
-    ax.barh(ypos, ys, align='center')
-    ax.set_xlabel('Mass fraction [-]')
-    ax.set_ylim(min(ypos) - 1, max(ypos) + 1)
-    ax.set_yticks(ypos)
-    ax.set_yticklabels(sp_solids)
     ax.invert_yaxis()
     ax.set_axisbelow(True)
     ax.set_frame_on(False)
     ax.tick_params(color='0.8')
     ax.xaxis.grid(True, color='0.8')
+
+
+def plot_gases(states, sp_gases):
+    """
+    Plot batch reactor gases concentrations.
+    """
+    fig, ax = plt.subplots(tight_layout=True)
+
+    for sp in sp_gases:
+        ax.plot(states.t, states(sp).Y[:, 0], label=sp)
+
+    _style_line(ax, xlabel='Time [s]', ylabel='Mass fraction [-]', legend='side')
+
+
+def plot_liquids(states, sp_liquids):
+    """
+    Plot batch reactor liquids concentrations.
+    """
+    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, sharey=True, figsize=(10, 4.8), tight_layout=True)
+
+    for sp in sp_liquids[:len(sp_liquids) // 2]:
+        ax1.plot(states.t, states(sp).Y[:, 0], label=sp)
+
+    for sp in sp_liquids[len(sp_liquids) // 2:]:
+        ax2.plot(states.t, states(sp).Y[:, 0], label=sp)
+
+    _style_line(ax1, xlabel='Time [s]', ylabel='Mass fraction [-]', legend='side')
+    _style_line(ax2, xlabel='Time [s]', ylabel='', legend='side')
+
+
+def plot_solids(states):
+    """
+    Plot batch reactor solids concentrations.
+    """
+    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, sharey=True, figsize=(10, 4.8), tight_layout=True)
+
+    ax1.plot(states.t, states('CELL').Y[:, 0], label='CELL')
+    ax1.plot(states.t, states('GMSW').Y[:, 0], label='GMSW')
+    ax1.plot(states.t, states('LIGC').Y[:, 0], label='LIGC')
+    ax1.plot(states.t, states('LIGH').Y[:, 0], label='LIGH')
+    ax1.plot(states.t, states('LIGO').Y[:, 0], label='LIGO')
+    ax1.plot(states.t, states('TANN').Y[:, 0], label='TANN')
+    ax1.plot(states.t, states('TGL').Y[:, 0], label='TGL')
+
+    ax2.plot(states.t, states('CELLA').Y[:, 0], label='CELLA')
+    ax2.plot(states.t, states('HCE1').Y[:, 0], label='HCE1')
+    ax2.plot(states.t, states('HCE2').Y[:, 0], label='HCE2')
+    ax2.plot(states.t, states('ITANN').Y[:, 0], label='ITANN')
+    ax2.plot(states.t, states('LIG').Y[:, 0], label='LIG')
+    ax2.plot(states.t, states('LIGCC').Y[:, 0], label='LIGCC')
+    ax2.plot(states.t, states('LIGOH').Y[:, 0], label='LIGOH')
+    ax2.plot(states.t, states('CHAR').Y[:, 0], label='CHAR')
+
+    _style_line(ax1, xlabel='Time [s]', ylabel='Mass fraction [-]', legend='side')
+    _style_line(ax2, xlabel='Time [s]', ylabel='', legend='side')
 
 
 def plot_metaplastics(states, sp_metaplastics):
@@ -77,65 +93,97 @@ def plot_metaplastics(states, sp_metaplastics):
     Plot metaplastic concentrations.
     """
     fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, sharey=True, figsize=(10, 4.8), tight_layout=True)
-    ax1.plot(states.t, states('GCH2O').Y[:, 0], label='GCH2O')
-    ax1.plot(states.t, states('GCO2').Y[:, 0], label='GCO2')
-    ax1.plot(states.t, states('GCO').Y[:, 0], label='GCO')
-    ax1.plot(states.t, states('GCH3OH').Y[:, 0], label='GCH3OH')
-    ax1.plot(states.t, states('GCH4').Y[:, 0], label='GCH4')
-    ax2.plot(states.t, states('GC2H4').Y[:, 0], label='GC2H4')
-    ax2.plot(states.t, states('GC6H5OH').Y[:, 0], label='GC6H5OH')
-    ax2.plot(states.t, states('GCOH2').Y[:, 0], label='GCOH2')
-    ax2.plot(states.t, states('GH2').Y[:, 0], label='GH2')
-    ax2.plot(states.t, states('GC2H6').Y[:, 0], label='GC2H6')
-    _config(ax1, xlabel='Time [s]', ylabel='Mass fraction [-]')
-    _config(ax2, xlabel='Time [s]', ylabel='')
 
-    ys = [states(sp).Y[:, 0][-1] for sp in sp_metaplastics]
-    ypos = np.arange(len(sp_metaplastics))
+    for sp in sp_metaplastics[:len(sp_metaplastics) // 2]:
+        ax1.plot(states.t, states(sp).Y[:, 0], label=sp)
 
-    fig, ax = plt.subplots(tight_layout=True)
-    ax.barh(ypos, ys, align='center')
-    ax.set_xlabel('Mass fraction [-]')
-    ax.set_ylim(min(ypos) - 1, max(ypos) + 1)
-    ax.set_yticks(ypos)
-    ax.set_yticklabels(sp_metaplastics)
-    ax.invert_yaxis()
-    ax.set_axisbelow(True)
-    ax.set_frame_on(False)
-    ax.tick_params(color='0.8')
-    ax.xaxis.grid(True, color='0.8')
+    for sp in sp_metaplastics[len(sp_metaplastics) // 2:]:
+        ax2.plot(states.t, states(sp).Y[:, 0], label=sp)
+
+    _style_line(ax1, xlabel='Time [s]', ylabel='Mass fraction [-]', legend='side')
+    _style_line(ax2, xlabel='Time [s]', ylabel='', legend='side')
 
 
-def plot_phases(states, y_gases, y_liquids, y_solids, y_metaplastics):
+def plot_phases_and_temp(states, y_gases, y_liquids, y_solids, y_metaplastics):
     """
-    Plot phases such as gases, liquids, solids, and metaplastics.
+    Plot batch reactor concentrations as phases such as gases, liquids,
+    solids, and metaplastics. Plot batch reactor temperature.
     """
-    fig, ax = plt.subplots(tight_layout=True)
-    ax.plot(states.t, y_gases, label='gases')
-    ax.plot(states.t, y_liquids, label='liquids')
-    ax.plot(states.t, y_solids, label='solids')
-    ax.plot(states.t, y_metaplastics, label='metaplastics')
-    _config(ax, xlabel='Time [s]', ylabel='Mass fraction [-]')
+    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 4.8), tight_layout=True)
+
+    # phases
+    ax1.plot(states.t, y_gases, label='gases')
+    ax1.plot(states.t, y_liquids, label='liquids')
+    ax1.plot(states.t, y_solids, label='solids')
+    ax1.plot(states.t, y_metaplastics, label='metaplastics')
+    _style_line(ax1, xlabel='Time [s]', ylabel='Mass fraction [-]', legend='best')
+
+    # temperature
+    ax2.plot(states.t, states.T, color='m')
+    _style_line(ax2, xlabel='Time [s]', ylabel='Temperature [K]')
 
 
-def plot_temperature(states):
+def plot_barh(states, sp_gases, sp_liquids, sp_solids, sp_metaplastics):
     """
-    Plot batch reactor temperature.
+    Plot final batch reactor concentrations as horizontal bars for gases,
+    liquids, solids, and metaplastics.
     """
-    fig, ax = plt.subplots(tight_layout=True)
-    ax.plot(states.t, states.T)
-    ax.grid(True, color='0.9')
-    ax.set_frame_on(False)
-    ax.set_xlabel('Time [s]')
-    ax.set_ylabel('Temperature [K]')
-    ax.tick_params(color='0.9')
+    fig, (ax1, ax2, ax3, ax4) = plt.subplots(nrows=1, ncols=4, figsize=(12, 6), tight_layout=True)
+
+    # gases
+    yg = [states(sp).Y[:, 0][-1] for sp in sp_gases]
+    yg_pos = np.arange(len(sp_gases))
+
+    ax1.barh(yg_pos, yg, align='center', color='C0', height=0.4)
+    ax1.set_title('Gases')
+    ax1.set_xlabel('Mass fraction [-]')
+    ax1.set_ylim(min(yg_pos) - 1, max(yg_pos) + 1)
+    ax1.set_yticks(yg_pos)
+    ax1.set_yticklabels(sp_gases)
+    _style_barh(ax1)
+
+    # liquids
+    yl = [states(sp).Y[:, 0][-1] for sp in sp_liquids]
+    yl_pos = np.arange(len(sp_liquids))
+
+    ax2.barh(yl_pos, yl, align='center', color='C1')
+    ax2.set_title('Liquids')
+    ax2.set_xlabel('Mass fraction [-]')
+    ax2.set_ylim(min(yl_pos) - 1, max(yl_pos) + 1)
+    ax2.set_yticks(yl_pos)
+    ax2.set_yticklabels(sp_liquids)
+    _style_barh(ax2)
+
+    # solids
+    ys = [states(sp).Y[:, 0][-1] for sp in sp_solids]
+    ys_pos = np.arange(len(sp_solids))
+
+    ax3.barh(ys_pos, ys, align='center', color='C2')
+    ax3.set_title('Solids')
+    ax3.set_xlabel('Mass fraction [-]')
+    ax3.set_ylim(min(ys_pos) - 1, max(ys_pos) + 1)
+    ax3.set_yticks(ys_pos)
+    ax3.set_yticklabels(sp_solids)
+    _style_barh(ax3)
+
+    # metaplastics
+    ym = [states(sp).Y[:, 0][-1] for sp in sp_metaplastics]
+    ym_pos = np.arange(len(sp_metaplastics))
+
+    ax4.barh(ym_pos, ym, align='center', color='C3', height=0.55)
+    ax4.set_title('Metaplastics')
+    ax4.set_xlabel('Mass fraction [-]')
+    ax4.set_ylim(min(ym_pos) - 1, max(ym_pos) + 1)
+    ax4.set_yticks(ym_pos)
+    ax4.set_yticklabels(sp_metaplastics)
+    _style_barh(ax4)
 
 
 def plot_batch_effects(param_values, y_out):
     """
-    Plot effects of cellulose, hemicellulose, lignin-c, lignin-h, lignin-o,
-    tann, and tgl on batch reactor yields. Yields are presented as grouped
-    chemical species of gases, liquids, and solids.
+    Plot effects of cellulose, hemicellulose, lignin-c, lignin-h,  lignin-o,
+    tann, and tgl on batch reactor yields for sensitivity analysis. Yields are
+    presented as grouped chemical species of gases, liquids, and solids.
 
     Parameters
     ----------

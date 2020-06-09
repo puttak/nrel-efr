@@ -2,11 +2,12 @@ import cantera as ct
 import logging
 import numpy as np
 
-from plotter import plot_sw_biocomp
+from plotter import plot_gases
+from plotter import plot_liquids
 from plotter import plot_solids
 from plotter import plot_metaplastics
-from plotter import plot_phases
-from plotter import plot_temperature
+from plotter import plot_phases_and_temp
+from plotter import plot_barh
 
 
 def batch_reactor(reactor, bc):
@@ -106,8 +107,9 @@ def batch_reactor(reactor, bc):
     logging.info(results)
 
     # plot results
-    plot_sw_biocomp(states)
-    plot_solids(states, sp_solids)
+    plot_gases(states, sp_gases)
+    plot_liquids(states, sp_liquids)
+    plot_solids(states)
     plot_metaplastics(states, sp_metaplastics)
-    plot_phases(states, y_gases, y_liquids, y_solids, y_metaplastics)
-    plot_temperature(states)
+    plot_phases_and_temp(states, y_gases, y_liquids, y_solids, y_metaplastics)
+    plot_barh(states, sp_gases, sp_liquids, sp_solids, sp_metaplastics)
