@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def _style_line(ax, xlabel, ylabel, legend=None):
+def _style_line(ax, xlabel, ylabel, title=None, legend=None):
     """
     Configure and style the plot figure.
     """
@@ -15,6 +15,9 @@ def _style_line(ax, xlabel, ylabel, legend=None):
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.tick_params(color='0.9')
+
+    if title:
+        ax.set_title(title)
 
     if legend == 'side':
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
@@ -33,75 +36,73 @@ def _style_barh(ax):
     ax.xaxis.grid(True, color='0.8')
 
 
-def plot_gases(states, sp_gases):
+def plot_gases_liquids(states, sp_gases, sp_liquids):
     """
-    Plot batch reactor gases concentrations.
+    Plot batch reactor gases and liquids concentrations.
     """
-    fig, ax = plt.subplots(tight_layout=True)
+    SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
 
+    fig, (ax1, ax2, ax3) = plt.subplots(nrows=1, ncols=3, figsize=(12, 4.8), sharey=True, tight_layout=True)
+
+    # gases
     for sp in sp_gases:
-        ax.plot(states.t, states(sp).Y[:, 0], label=sp)
+        ax1.plot(states.t, states(sp).Y[:, 0], label=sp.translate(SUB))
 
-    _style_line(ax, xlabel='Time [s]', ylabel='Mass fraction [-]', legend='side')
+    _style_line(ax1, xlabel='Time [s]', ylabel='Mass fraction [-]', title='Gases', legend='side')
 
-
-def plot_liquids(states, sp_liquids):
-    """
-    Plot batch reactor liquids concentrations.
-    """
-    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, sharey=True, figsize=(10, 4.8), tight_layout=True)
-
+    # liquids
     for sp in sp_liquids[:len(sp_liquids) // 2]:
-        ax1.plot(states.t, states(sp).Y[:, 0], label=sp)
+        ax2.plot(states.t, states(sp).Y[:, 0], label=sp.translate(SUB))
 
     for sp in sp_liquids[len(sp_liquids) // 2:]:
-        ax2.plot(states.t, states(sp).Y[:, 0], label=sp)
+        ax3.plot(states.t, states(sp).Y[:, 0], label=sp.translate(SUB))
 
-    _style_line(ax1, xlabel='Time [s]', ylabel='Mass fraction [-]', legend='side')
-    _style_line(ax2, xlabel='Time [s]', ylabel='', legend='side')
+    _style_line(ax2, xlabel='Time [s]', ylabel='', title='Liquids', legend='side')
+    _style_line(ax3, xlabel='Time [s]', ylabel='', title='Liquids', legend='side')
 
 
-def plot_solids(states):
+def plot_solids_metaplastics(states, sp_metaplastics):
     """
-    Plot batch reactor solids concentrations.
+    Plot batch reactor solids and metaplastics concentrations.
     """
-    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, sharey=True, figsize=(10, 4.8), tight_layout=True)
+    SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
 
-    ax1.plot(states.t, states('CELL').Y[:, 0], label='CELL')
-    ax1.plot(states.t, states('GMSW').Y[:, 0], label='GMSW')
-    ax1.plot(states.t, states('LIGC').Y[:, 0], label='LIGC')
-    ax1.plot(states.t, states('LIGH').Y[:, 0], label='LIGH')
-    ax1.plot(states.t, states('LIGO').Y[:, 0], label='LIGO')
-    ax1.plot(states.t, states('TANN').Y[:, 0], label='TANN')
-    ax1.plot(states.t, states('TGL').Y[:, 0], label='TGL')
+    fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(10, 6), tight_layout=True)
 
-    ax2.plot(states.t, states('CELLA').Y[:, 0], label='CELLA')
-    ax2.plot(states.t, states('HCE1').Y[:, 0], label='HCE1')
-    ax2.plot(states.t, states('HCE2').Y[:, 0], label='HCE2')
-    ax2.plot(states.t, states('ITANN').Y[:, 0], label='ITANN')
-    ax2.plot(states.t, states('LIG').Y[:, 0], label='LIG')
-    ax2.plot(states.t, states('LIGCC').Y[:, 0], label='LIGCC')
-    ax2.plot(states.t, states('LIGOH').Y[:, 0], label='LIGOH')
-    ax2.plot(states.t, states('CHAR').Y[:, 0], label='CHAR')
+    # solids (biomass composition)
+    axs[0, 0].plot(states.t, states('CELL').Y[:, 0], label='CELL')
+    axs[0, 0].plot(states.t, states('GMSW').Y[:, 0], label='GMSW')
+    axs[0, 0].plot(states.t, states('LIGC').Y[:, 0], label='LIGC')
+    axs[0, 0].plot(states.t, states('LIGH').Y[:, 0], label='LIGH')
+    axs[0, 0].plot(states.t, states('LIGO').Y[:, 0], label='LIGO')
+    axs[0, 0].plot(states.t, states('TANN').Y[:, 0], label='TANN')
+    axs[0, 0].plot(states.t, states('TGL').Y[:, 0], label='TGL')
+    axs[0, 0].get_shared_y_axes().join(axs[0, 0], axs[0, 1])
+    _style_line(axs[0, 0], xlabel='Time [s]', ylabel='Mass fraction [-]', title='Solids', legend='side')
 
-    _style_line(ax1, xlabel='Time [s]', ylabel='Mass fraction [-]', legend='side')
-    _style_line(ax2, xlabel='Time [s]', ylabel='', legend='side')
+    # solids
+    axs[0, 1].plot(states.t, states('CELLA').Y[:, 0], label='CELLA')
+    axs[0, 1].plot(states.t, states('HCE1').Y[:, 0], label='HCE1')
+    axs[0, 1].plot(states.t, states('HCE2').Y[:, 0], label='HCE2')
+    axs[0, 1].plot(states.t, states('ITANN').Y[:, 0], label='ITANN')
+    axs[0, 1].plot(states.t, states('LIG').Y[:, 0], label='LIG')
+    axs[0, 1].plot(states.t, states('LIGCC').Y[:, 0], label='LIGCC')
+    axs[0, 1].plot(states.t, states('LIGOH').Y[:, 0], label='LIGOH')
+    axs[0, 1].plot(states.t, states('CHAR').Y[:, 0], label='CHAR')
+    _style_line(axs[0, 1], xlabel='Time [s]', ylabel='', title='Solids', legend='side')
 
-
-def plot_metaplastics(states, sp_metaplastics):
-    """
-    Plot metaplastic concentrations.
-    """
-    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, sharey=True, figsize=(10, 4.8), tight_layout=True)
-
+    # metaplastics
     for sp in sp_metaplastics[:len(sp_metaplastics) // 2]:
-        ax1.plot(states.t, states(sp).Y[:, 0], label=sp)
+        axs[1, 0].plot(states.t, states(sp).Y[:, 0], label=sp.translate(SUB))
 
+    axs[1, 0].get_shared_y_axes().join(axs[1, 0], axs[1, 1])
+    _style_line(axs[1, 0], xlabel='Time [s]', ylabel='Mass fraction [-]', title='Metaplastics', legend='side')
+
+    # metaplastics
     for sp in sp_metaplastics[len(sp_metaplastics) // 2:]:
-        ax2.plot(states.t, states(sp).Y[:, 0], label=sp)
+        axs[1, 1].plot(states.t, states(sp).Y[:, 0], label=sp.translate(SUB))
 
-    _style_line(ax1, xlabel='Time [s]', ylabel='Mass fraction [-]', legend='side')
-    _style_line(ax2, xlabel='Time [s]', ylabel='', legend='side')
+    _style_line(axs[1, 1], xlabel='Time [s]', ylabel='', title='Metaplastics', legend='side')
 
 
 def plot_phases_and_temp(states, y_gases, y_liquids, y_solids, y_metaplastics):
