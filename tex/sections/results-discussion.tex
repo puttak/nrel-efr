@@ -109,15 +109,61 @@ Several approaches were investigated to characterize the Blend3 feedstock for us
         \midrule
         cellulose     & 26.38 & 39.24 & 39.19 \\
         hemicellulose & 14.33 & 25.12 & 23.26 \\
-        lignin-c      & 7.84  & 8.57  & 9.89 \\
-        lignin-h      & 5.27  & 3.11  & 9.89 \\
-        lignin-o      & 46.18 & 18.00 & 9.89 \\
-        tannins       & 0.00  & 2.95  & 7.88 \\
-        triglycerides & 0.00  & 3.01  & 0.00 \\
+        lignin-c      & 7.84  & 8.57  & 9.89  \\
+        lignin-h      & 5.27  & 3.11  & 9.89  \\
+        lignin-o      & 46.18 & 18.00 & 9.89  \\
+        tannins       & 0.00  & 2.95  & 7.88  \\
+        triglycerides & 0.00  & 3.01  & 0.00  \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 \subsection{Blend3 batch reactor conversion and yields}
 
-Here.
+The final concentrations in the batch reactor after 10 seconds of reaction at 500$^{\circ}$C are shown in Table \ref{tab:blend3-batch-final}. As the table shows, concentrations vary considerably based on the initial biomass composition. Therefore, it is essential to correctly characterize the biomass composition to obtain reasonable results from the Debiagi pyrolysis kinetics.
+
+\begin{table}[H]
+    \centering
+    \caption{Final batch reactor concentrations for Blend3 feedstock. Biomass composition based on ultimate analysis (Case 1), modified ultimate analysis and splitting parameters (Case 2), and chemical analysis (Case 3).}
+    \label{tab:blend3-batch-final}
+    \begin{tabular}{lrrr}
+        \toprule
+        Final concentration (\% mass) & Case 1 & Case 2 & Case 3 \\
+        \midrule
+        gases         & 18.40 & 15.93 & 14.99 \\
+        liquids       & 40.08 & 55.79 & 52.51 \\
+        solids        & 20.84 & 16.25 & 20.92 \\
+        metaplastics  & 20.68 & 12.04 & 11.59 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+For the Blend3 biomass composition based on the chemical analysis data (Case 3), conversions of the gas, liquids, solids, and metaplastic species are shown in Figures X.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.4\textwidth]{figures/blend3-case3-gases-liquids.pdf}}
+    \caption{Batch reactor gas and liquid concentrations for Blend3 feedstock based on Case 3 biomass composition.}
+    \label{fig:blend3-case3-gases-liquids}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/blend3-case3-solids-meta.pdf}
+    \caption{Batch reactor solid and metaplastic concentrations for Blend3 feedstock based on Case 3 biomass composition.}
+    \label{fig:blend3-case3-solids-meta}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/blend3-case3-phases-temp.pdf}
+    \caption{Comparison of the gas, liquid, solid, and metaplastic phases in the batch reactor for the Blend3 feedstock based on Case 3 biomass composition. Reactor temperature during the reaction process (without heats of reaction).}
+    \label{fig:blend3-case3-phases-temp}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/blend3-case3-final.pdf}}
+    \caption{Final batch reactor concentrations for Blend3 feedstock based on Case 3 biomass composition.}
+    \label{fig:blend3-case3-final}
+\end{figure}

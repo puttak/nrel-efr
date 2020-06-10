@@ -14,12 +14,12 @@ feedstock = {
 
     'chemical_analysis': {
         'cellulose': 39.19,
-        'hemicellulose': 24.71,
-        'lignin_c': 0.00,
-        'lignin_h': 14.83,
-        'lignin_o': 14.83,
-        'tannins': 0.00,
-        'triglycerides': 6.43
+        'hemicellulose': 23.26,
+        'lignin_c': 9.89,
+        'lignin_h': 9.89,
+        'lignin_o': 9.89,
+        'tannins': 7.88,
+        'triglycerides': 0.00
     },
 
     'biomass_characterization': {
