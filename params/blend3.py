@@ -1,11 +1,14 @@
 """
-Parameters for the Blend3 feedstock in the entrained flow reactor.
+Blend3 feedstock parameters.
 
-`ultimate_analysis` is [C, H, O, N, S, ash, moisture]
-`chemical_analysis` is dry ash-free basis (% daf)
+ultimate_analysis : list
+    Elements listed as [C, H, O, N, S, ash, moisture]
+
+chemical_analysis : dict
+    Biomass composition determined from chemical analysis data. These values
+    are used for the pyrolysis kinetics. Values are given as mass fraction (-)
+    on dry ash-free basis (% daf).
 """
-
-# Blend3 feedstock
 
 feedstock = {
     'name': 'Blend3',
@@ -33,7 +36,14 @@ feedstock = {
     }
 }
 
-# Entrained flow reactor (EFR)
+"""
+Entrained flow reactor (EFR) parameters.
+
+energy : str
+    Used by the Cantera reactor model. If set to `off` then disable the energy
+    equation. If `on` then enable the energy and use the provided thermo data
+    for the reactions.
+"""
 
 reactor = {
     'name': 'Entrained flow reactor (EFR)',
@@ -43,7 +53,9 @@ reactor = {
     'energy': 'off'
 }
 
-# Sensitivity analysis for the Debiagi 2018 kinetics
+"""
+Sensitivity analysis parameters for the Debiagi 2018 kinetics.
+"""
 
 sensitivity_analysis = {
     'n_samples': 10,

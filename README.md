@@ -6,7 +6,9 @@ This repository is for the Entrained Flow Reactor (EFR) at NREL. The reactor ope
 
 ## Project structure
 
-**diagrams** - Files for creating diagrams on the [draw.io](https://www.draw.io) website.
+**data** - Data from experimental measurements and for the pyrolysis kinetics.
+
+**diagrams** - Files for creating diagrams on the [diagrams.net](https://www.diagrams.net) website.
 
 **efr** - Python files for running various models of the entrained flow reactor.
 
