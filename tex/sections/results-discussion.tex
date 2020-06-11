@@ -2,11 +2,19 @@
 
 \section{Results and discussion}
 
-Characterization of the biomass along with batch reactor and sensitivity analysis results are discussed in this section.
+A sensitivity analysis of the pyrolysis kinetics in a batch reactor model are discussed in this section. Biomass composition and batch reactor model results for the Blend3 feedstock are also explored.
 
 \subsection{Pyrolysis kinetics sensitivity analysis}
 
-A sensitivity analysis of the Debiagi pyrolysis kinetics in a batch reactor model was performed using 16,000 samples, a reaction time of 10 seconds, a reactor temperature of 773.15 K, and a reactor pressure of 101,325 Pa. Each sample represents some combination of cellulose, hemicellulose, lignin-c, lignin-h, lignin-o, tannins, and triglycerides. Batch reactor yields from the samples are shown in Figures \ref{fig:batch-sa1} and \ref{fig:batch-sa2}. The Sobol sensitivity analysis based on the batch reactor results is presented in Figure \ref{fig:batch-sa3}.
+A sensitivity analysis of the Debiagi pyrolysis kinetics in a batch reactor model was performed using 16,000 samples which represent a range of biomass compositions. A reaction time of 10 seconds, a reactor temperature of 773.15 K, and a reactor pressure of 101,325 Pa were applied to the model. Batch reactor yields from the samples are shown in Figures \ref{fig:batch-sa1} and \ref{fig:batch-sa2}. The most pronounced gas trends are observed for the lignin-o, tannin, and triglyceride concentrations while liquids appear to be most affected by triglycerides. The greatest affects on solid yields seem to be from tannin and triglyceride concentrations.
+
+The Sobol sensitivity analysis based on the batch reactor results is presented in Figure \ref{fig:batch-sa3}. The results from the first-order indices (S1) are discussed below. Similar results are observed for the total-order indices (ST).
+
+\begin{itemize}
+    \item gas yields are most affected by lignin-o, tannins, and triglycerides
+    \item liquid yields are most affected by triglycerides and to a lesser extent by tannins and cellulose
+    \item solid yields are most affected by cellulose, tannins, and triglycerides
+\end{itemize}
 
 \begin{figure}[H]
     \centering
@@ -31,7 +39,7 @@ A sensitivity analysis of the Debiagi pyrolysis kinetics in a batch reactor mode
 
 \subsection{Blend3 biomass composition}
 
-Several approaches were investigated to characterize the Blend3 feedstock for use with the Debiagi pyrolysis kinetics. The first approach uses the characterization method discussed in the Debiagi et al. 2015 paper where carbon and hydrogen from ultimate analysis is used to determine the biomass composition \cite{Debiagi-2015}. To use this approach for the Blend3 feedstock, the mass fraction of C and H on a dry ash-free basis (last column in Table \ref{tab:blend3-ult-bases}) is used for the biomass characterization procedure.
+Several approaches were investigated to characterize the Blend3 feedstock data for use with the Debiagi pyrolysis kinetics. The characterization method discussed in the Debiagi et al. 2015 paper utilizes the carbon and hydrogen from ultimate analysis to determine the biomass composition \cite{Debiagi-2015}. To use this approach for the Blend3 feedstock, the mass fraction of C and H on a dry ash-free basis (last column in Table \ref{tab:blend3-ult-bases}) is used for the biomass characterization procedure.
 
 \begin{table}[H]
     \centering
@@ -78,7 +86,7 @@ Several approaches were investigated to characterize the Blend3 feedstock for us
     \label{tab:biocomp-chem}
     \begin{tabular}{lp{3in}}
         \toprule
-        Biomass composition & Chemical analysis \\
+        Biomass composition & Chemical analysis data \\
         \midrule
         cellulose     & glucan \\
         \addlinespace[0.1in]
@@ -92,7 +100,7 @@ Several approaches were investigated to characterize the Blend3 feedstock for us
         \addlinespace[0.1in]
         tannins       & acetyl, water extractives, ethanol extractives \\
         \addlinespace[0.1in]
-        triglycerides & ? \\
+        triglycerides & not applicable \\
         \addlinespace[0.1in]
         ash           & non-structural inorganics, structural inorganics \\
         \bottomrule
@@ -120,11 +128,11 @@ Several approaches were investigated to characterize the Blend3 feedstock for us
 
 \subsection{Blend3 batch reactor conversion and yields}
 
-The final concentrations in the batch reactor after 10 seconds of reaction at 500$^{\circ}$C are shown in Table \ref{tab:blend3-batch-final}. As the table shows, concentrations vary considerably based on the initial biomass composition. Therefore, it is essential to correctly characterize the biomass composition to obtain reasonable results from the Debiagi pyrolysis kinetics.
+The final concentrations in the batch reactor after 10 seconds of reaction at 500$^{\circ}$C are shown in Table \ref{tab:blend3-batch-final}. These results do not utilize the thermo data for the Debiagi kinetics; therefore, they neglect exothermic or endothermic effects from heats of reactions. As the table shows, concentrations vary considerably based on the initial biomass composition. Therefore, it is essential to correctly characterize the biomass composition to obtain reasonable results from the Debiagi pyrolysis kinetics.
 
 \begin{table}[H]
     \centering
-    \caption{Final batch reactor concentrations for Blend3 feedstock. Biomass composition based on ultimate analysis (Case 1), modified ultimate analysis and splitting parameters (Case 2), and chemical analysis (Case 3).}
+    \caption{Final batch reactor concentrations for Blend3 feedstock (no thermo). Biomass composition based on ultimate analysis (Case 1), modified ultimate analysis and splitting parameters (Case 2), and chemical analysis (Case 3).}
     \label{tab:blend3-batch-final}
     \begin{tabular}{lrrr}
         \toprule
@@ -138,7 +146,7 @@ The final concentrations in the batch reactor after 10 seconds of reaction at 50
     \end{tabular}
 \end{table}
 
-For the Blend3 biomass composition based on the chemical analysis data (Case 3), conversions of the gas, liquids, solids, and metaplastic species are shown in Figures X.
+For the Blend3 biomass composition based on the chemical analysis data (Case 3), evolutions of the gas, liquid, solid, and metaplastic species are shown in Figures \ref{fig:blend3-case3-gases-liquids} and \ref{fig:blend3-case3-solids-meta}. A comparison of the total gas, liquid, solid, and metaplastic species is given in Figure \ref{fig:blend3-case3-phases-temp} along with the batch reactor temperature profile. Figure \ref{fig:blend3-case3-final} depicts the final concentrations of the chemical species at 10 seconds of reaction time. At 500$^{\circ}$C the metaplastic species remain in the reactor and contribute to the total solids concentration.
 
 \begin{figure}[H]
     \centering
@@ -167,3 +175,12 @@ For the Blend3 biomass composition based on the chemical analysis data (Case 3),
     \caption{Final batch reactor concentrations for Blend3 feedstock based on Case 3 biomass composition.}
     \label{fig:blend3-case3-final}
 \end{figure}
+
+\subsection{Blend3 batch reactor conversion and yields (with thermo)}
+
+Here.
+
+\subsection{Blend3 entrained flow reactor model}
+
+Here.
+

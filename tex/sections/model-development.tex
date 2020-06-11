@@ -160,13 +160,6 @@ Ideally, the composition of the biomass would be directly measured; otherwise, t
 
 The material balance for a typical chemical reactor is shown in Equation \ref{eq:typical-balance} where $C_0$ is inlet concentration, $C$ is outlet concentration, $v$ is volumetric flow rate, $r$ is the reaction rate, and $V$ is the reactor volume.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.2\textwidth]{figures/batch-reactor.png}
-    \caption{Representation of a batch reactor system.}
-    \label{fig:batch-reactor}
-\end{figure}
-
 \begin{equation}
     \label{eq:typical-balance}
     \begin{aligned}
@@ -175,7 +168,7 @@ The material balance for a typical chemical reactor is shown in Equation \ref{eq
     \end{aligned}
 \end{equation}
 
-A batch reactor was modeled to understand the time scales associated with the biomass pyrolysis kinetics. For the batch reactor, input and output is zero therefore only the accumulation and reaction terms remain in the material balance. For a constant volumne reactor the $V$ terms cancel out; therefore, Equation \ref{eq:batch-balance} represents the material balance for a batch reactor model.
+A batch reactor was modeled to understand the time scales associated with the biomass pyrolysis kinetics. For the batch reactor, input and output is zero therefore only the accumulation and reaction terms remain in the material balance. For a constant volume reactor the $V$ terms cancel out; therefore, Equation \ref{eq:batch-balance} represents the material balance for a batch reactor model. A depiction of a batch reactor can be seen in Figure \ref{fig:batch-reactor}.
 
 \begin{equation}
     \label{eq:batch-balance}
@@ -185,6 +178,13 @@ A batch reactor was modeled to understand the time scales associated with the bi
     \end{aligned}
 \end{equation}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{figures/batch-reactor.png}
+    \caption{Representation of a batch reactor system. Source: Wikipedia.}
+    \label{fig:batch-reactor}
+\end{figure}
+
 \subsection{Sensitivity analysis}
 
-A sensitivity analysis was performed with the Debiagi pyrolysis kinetics to investigate the effects of biomass composition on product yields. The awesome SALib Python package was utilized for sample generation and prediction of the Sobol indices \cite{Herman-2017}. For the sensitivity analysis model, a sample represents the biomass composition as cellulose, hemicellulose, lignin-c, lignin-h, lignin-o, tannins, and triglycerides. This sample (or composition) is used in a reactor model at a certain temperature and pressure to predict pyrolysis yields. The sensitivity analysis model applies this approach to a large sample matrix then uses the generated data to perform a Sobol analysis.
+A sensitivity analysis was performed with the Debiagi pyrolysis kinetics to investigate the effects of biomass composition on product yields. The wonderful SALib Python package was utilized for sample generation and prediction of the Sobol indices \cite{Herman-2017}. For the sensitivity analysis model, a sample represents the biomass composition as cellulose, hemicellulose, lignin-c, lignin-h, lignin-o, tannins, and triglycerides. This sample (or composition) is used in a reactor model at a certain temperature and pressure to predict pyrolysis yields. The sensitivity analysis model applies this approach to a large sample matrix then uses the generated data to perform a Sobol analysis.
