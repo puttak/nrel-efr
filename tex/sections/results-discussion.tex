@@ -149,38 +149,73 @@ The final concentrations in the batch reactor after 10 seconds of reaction at 50
 For the Blend3 biomass composition based on the chemical analysis data (Case 3), evolutions of the gas, liquid, solid, and metaplastic species are shown in Figures \ref{fig:blend3-case3-gases-liquids} and \ref{fig:blend3-case3-solids-meta}. A comparison of the total gas, liquid, solid, and metaplastic species is given in Figure \ref{fig:blend3-case3-phases-temp} along with the batch reactor temperature profile. Figure \ref{fig:blend3-case3-final} depicts the final concentrations of the chemical species at 10 seconds of reaction time. At 500$^{\circ}$C the metaplastic species remain in the reactor and contribute to the total solids concentration.
 
 \begin{figure}[H]
-    \centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.4\textwidth]{figures/blend3-case3-gases-liquids.pdf}}
+    \makebox[\textwidth][c]{
+        \begin{subfigure}{1.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/blend3-case3-gases-liquids.pdf}
+            \caption{Without thermodynamics.}
+        \end{subfigure}
+    }
+    \makebox[\textwidth][c]{
+        \begin{subfigure}{1.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/blend3-case3-gases-liquids-thermo.pdf}
+            \caption{With thermodynamics.}
+        \end{subfigure}
+    }
     \caption{Batch reactor gas and liquid concentrations for Blend3 feedstock based on Case 3 biomass composition.}
     \label{fig:blend3-case3-gases-liquids}
 \end{figure}
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/blend3-case3-solids-meta.pdf}
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/blend3-case3-solids-meta.pdf}
+        \caption{Without thermodynamics.}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/blend3-case3-solids-meta-thermo.pdf}
+        \caption{With thermodynamics.}
+    \end{subfigure}
     \caption{Batch reactor solid and metaplastic concentrations for Blend3 feedstock based on Case 3 biomass composition.}
     \label{fig:blend3-case3-solids-meta}
 \end{figure}
 
 \begin{figure}[H]
-    \centering
+    \begin{subfigure}{\textwidth}
+        \centering
     \includegraphics[width=\textwidth]{figures/blend3-case3-phases-temp.pdf}
-    \caption{Comparison of the gas, liquid, solid, and metaplastic phases in the batch reactor for the Blend3 feedstock based on Case 3 biomass composition. Reactor temperature during the reaction process (without heats of reaction).}
+        \caption{Without thermodynamics.}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \centering
+    \includegraphics[width=\textwidth]{figures/blend3-case3-phases-temp-thermo.pdf}
+        \caption{With thermodynamics.}
+    \end{subfigure}
+    \caption{Comparison of the gas, liquid, solid, and metaplastic phases in the batch reactor for the Blend3 feedstock based on Case 3 biomass composition. Reactor temperature during the reaction process.}
     \label{fig:blend3-case3-phases-temp}
 \end{figure}
 
 \begin{figure}[H]
-    \centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/blend3-case3-final.pdf}}
+    \makebox[\textwidth][c]{
+        \begin{subfigure}{1.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/blend3-case3-final.pdf}
+            \caption{Without thermodynamics.}
+        \end{subfigure}
+    }
+    \makebox[\textwidth][c]{
+        \begin{subfigure}{1.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/blend3-case3-final-thermo.pdf}
+            \caption{With thermodynamics.}
+        \end{subfigure}
+    }
     \caption{Final batch reactor concentrations for Blend3 feedstock based on Case 3 biomass composition.}
     \label{fig:blend3-case3-final}
 \end{figure}
 
-\subsection{Blend3 batch reactor conversion and yields (with thermo)}
-
-Here.
-
 \subsection{Blend3 entrained flow reactor model}
 
 Here.
-

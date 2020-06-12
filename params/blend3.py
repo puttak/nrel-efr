@@ -50,7 +50,7 @@ reactor = {
     'pressure': 101_325.0,
     'temperature': 773.15,
     'time_duration': 10.0,
-    'energy': 'off'
+    'energy': 'on'
 }
 
 """
