@@ -146,7 +146,7 @@ The final concentrations in the batch reactor after 10 seconds of reaction at 50
     \end{tabular}
 \end{table}
 
-For the Blend3 biomass composition based on the chemical analysis data (Case 3), evolutions of the gas, liquid, solid, and metaplastic species are shown in Figures \ref{fig:blend3-case3-gases-liquids} and \ref{fig:blend3-case3-solids-meta}. A comparison of the total gas, liquid, solid, and metaplastic species is given in Figure \ref{fig:blend3-case3-phases-temp} along with the batch reactor temperature profile. Figure \ref{fig:blend3-case3-final} depicts the final concentrations of the chemical species at 10 seconds of reaction time. At 500$^{\circ}$C the metaplastic species remain in the reactor and contribute to the total solids concentration.
+For the Blend3 biomass composition based on the chemical analysis data (Case 3), evolutions of the gas, liquid, solid, and metaplastic species are shown in Figures \ref{fig:blend3-case3-gases-liquids} and \ref{fig:blend3-case3-solids-meta}. The results are generated with and without using thermodynamic data for the Debiagi kinetics. Gaseous species remain under 8\% for both thermodynamic scenarios. Liquid species reach steady-state concentrations within 2.5 seconds without thermo but continue to increase when thermodynamics are applied. Solid species except for tannins fully devolatilize within 10 seconds without thermodynamics but never fully convert when thermo data is utilized. Metaplastic species reach steady-state concentrations without thermodynamics but continue to devolatilize when thermodynamics are accounted for.
 
 \begin{figure}[H]
     \makebox[\textwidth][c]{
@@ -182,6 +182,8 @@ For the Blend3 biomass composition based on the chemical analysis data (Case 3),
     \label{fig:blend3-case3-solids-meta}
 \end{figure}
 
+A comparison of the total gas, liquid, solid, and metaplastic species is given in Figure \ref{fig:blend3-case3-phases-temp} along with the batch reactor temperature profile. Without thermodynamic effects, temperature in the reactor is constant at 500$^{\circ}$C and pyrolysis is mostly complete within 2 seconds. The main pyrolysis product in the reactor is the liquid species. Including thermodynamics, pyrolysis is still occuring at 10 seconds and a large amount of solid species remain in the reactor. Also, the reactor temperature decreases to 680 K (407$^{\circ}$C) suggesting an overall endothermic pyrolysis process.
+
 \begin{figure}[H]
     \begin{subfigure}{\textwidth}
         \centering
@@ -196,6 +198,8 @@ For the Blend3 biomass composition based on the chemical analysis data (Case 3),
     \caption{Comparison of the gas, liquid, solid, and metaplastic phases in the batch reactor for the Blend3 feedstock based on Case 3 biomass composition. Reactor temperature during the reaction process.}
     \label{fig:blend3-case3-phases-temp}
 \end{figure}
+
+Figure \ref{fig:blend3-case3-final} depicts the final concentrations of the chemical species after 10 seconds of reaction time at 500$^{\circ}$C. The most noticeable concentrations of gas species are CO and CO$_2$. Liquid products are mainly C$_6$H$_{10}$O$_5$, C$_6$H$_6$O$_3$, and H$_2$O. Without accounting for thermodynamics, char is the main solid species along with tannins. With thermodynamics, the major solid species are lignin components with lesser amounts of tannins, char, and unpyrolyzed cellulose. The main metaplastic species are G\{CH$_2$O\} and G\{COH$_2$\} for both scenarios with and without thermodynamic characteristics.
 
 \begin{figure}[H]
     \makebox[\textwidth][c]{
