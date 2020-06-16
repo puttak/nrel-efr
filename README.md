@@ -16,12 +16,16 @@ This repository is for the Entrained Flow Reactor (EFR) at NREL. The reactor ope
 
 **tex** - LaTeX files for generating the report.
 
+## Installation
+
+The EFR program requires the latest version of Python and several packages as listed in the `requirements.txt` file.
+
 ## Usage
 
-The EFR model is run from the command line using Python.
+The EFR program is run from the command line using Python.
 
 ```bash
-# run the EFR model with the Blend3 feedstock parameters
+# run the EFR program with the Blend3 feedstock parameters
 $ python efr params/blend3.py
 
 # show all Matplotlib plot figures
@@ -30,13 +34,13 @@ $ python efr --show_plots params/blend3.py
 # use C and H from ultimate analysis to determine biomass composition
 $ python efr --biocomp=ult params/blend3.py
 
-# view all available commands for running the EFR model
+# view all available commands for running the EFR program
 $ python efr --help
 ```
 
 ## Report
 
-See the [main.pdf](tex/main.pdf) document in the **tex** folder for the technical report.
+See the [main.pdf](tex/main.pdf) document in the **tex** folder for the EFR technical report.
 
 ## Contributing
 
